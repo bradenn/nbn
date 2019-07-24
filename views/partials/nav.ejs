@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"><i class="fas fa-home link-elem fa-lg"></i><span class="link-elem link-text">Home</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-fire link-elem fa-lg"></i><span class="link-elem link-text">Trending</span></a>
+        </li>
+        <% if(user != null){ %>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fas fa-bell link-elem fa-lg"></i><span class="link-elem link-text">Notifications</span>&nbsp;<span class="badge badge-secondary">0</span></a>
+        </li>
+        <% } %>
+      </ul>
+      <ul class="nav navbar-nav mr-right">
+        <li class="nav-item nav-center">
+          <span class="fa-stack fa-md">
+            <i class="fas fa-circle fa-stack-2x"></i>
+            <i class="fas fa-bolt fa-stack-1x fa-inverse"></i>
+          </span>
+
+        </li>
+        <% if(user != null){ %>
+        <li class="nav-item">
+          <a href="/profile">
+            <img src="<%= user.picture %>" class="nav-img" />
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-primary nav-btn" href="#">Post</a>
+        </li>
+        <% }else{ %>
+        <li class="nav-item">
+          <a class="btn btn-primary nav-btn" href="/login">Login</a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+  </div>
+</nav>
