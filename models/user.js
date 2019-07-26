@@ -15,6 +15,14 @@ let UserSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
+  notifications: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Notification'
+  }],
+  teams: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Team'
+  }],
   firstname: String,
   lastname: String,
   password: String,

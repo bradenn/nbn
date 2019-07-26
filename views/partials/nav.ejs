@@ -6,14 +6,31 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/"><i class="fas fa-home link-elem fa-lg"></i><span class="link-elem link-text">Home</span></a>
+          <a class="nav-link" href="/"><i class="material-icons link-elem">home</i><span class="link-elem link-text">Home</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-fire link-elem fa-lg"></i><span class="link-elem link-text">Trending</span></a>
+          <a class="nav-link" href="#"><i class="material-icons link-elem">whatshot</i><span class="link-elem link-text">Trending</span></a>
         </li>
         <% if(user != null){ %>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-bell link-elem fa-lg"></i><span class="link-elem link-text">Notifications</span>&nbsp;<span class="badge badge-secondary">0</span></a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons link-elem">notifications</i><span class="link-elem link-text">Notifications</span>&nbsp;<span class="badge badge-secondary"><%= user.notifications.length %></span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% for(var i = 0; i < user.notifications.length; i++){ %>
+              <%= user.notifications[i] %>
+            <% } %>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="material-icons link-elem">people</i><span class="link-elem link-text">Teams</span>&nbsp;
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <% for(var i = 0; i < user.notifications.length; i++){ %>
+              <%= user.notifications[i] %>
+            <% } %>
+          </div>
         </li>
         <% } %>
       </ul>

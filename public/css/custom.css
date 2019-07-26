@@ -1,9 +1,57 @@
+html[data-theme='dark'] {
+  --background: rgba(0, 0, 0, 1);
+  --secondary: rgba(33, 33, 33, 0.72);
+  --accent: rgba(255, 149, 0, 1);
+  --text: #fff;
+}
+
+html[data-theme='light'] {
+  --background: rgba(239, 239, 244, 1);
+  --secondary: rgba(248, 248, 248, 0.72);
+  --accent: rgba(0, 122, 255, 1);
+  --text: #000;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.5em !important;
+  line-height: 1.5em !important;
+  display: inline-block;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
 body {
-  background-color: #222831;
+  background-color: var(--background);
+}
+
+.card {
+  padding: 16px;
+}
+
+.card-body-image {
+  display: inline-block;
+}
+
+.card-body-object {
+  display: inline-block;
 }
 
 .bg-dark {
-  background-color: #393e46 !important;
+  background-color: var(--secondary) !important;
 }
 
 .form-element {
@@ -21,57 +69,69 @@ body {
 }
 
 .text-white {
-  color: #eee;
+  color: var(--text);
 }
 
 .nav-center {
   position: absolute;
   left: 50%;
   margin-left: -20px !important;
-  color: #d65a31;
+  color: var(--accent);
 }
 
 .card {
-  background-color: #393e46 !important;
-  color: #eee;
+  background-color: var(--secondary) !important;
+  color: var(--text);
 }
 
 .navbar {
   height: 46px;
 }
 
+.user-text {
+  font-weight: 600;
+}
+
 .btn-primary {
-  background-color: #d65a31;
+  background-color: var(--accent);
   border: none;
 }
 
+.user-element {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .nav-img {
+  background-color: var(--text);
+  width: 34px;
   height: 34px;
   border-radius: 50%;
+  border: none;
 }
 
 .btn-primary:hover {
-  background-color: #d65a31;
-  color: #eee !important;
+  background-color: var(--accent);
+  color: var(--text) !important;
 }
 
 .btn-primary:active {
-  background-color: #d65a31 !important;
-  color: #eee !important;
+  background-color: var(--accent) !important;
+  color: var(--text) !important;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #eeeeee;
+  color: var(--text);
   height: 100%;
   font-size: 13px;
   font-weight: 600;
-  border-bottom: 2px solid #393e46;
+  border-bottom: 2px solid rgba(0, 0, 0, 0);
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-  color: #d65a31;
-  border-bottom: 2px solid #d65a31;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
   height: 100%;
   font-size: 13px;
   font-weight: 600;
@@ -96,7 +156,7 @@ body {
   left: 50%;
   margin-left: -6.5px;
   margin-top: -6.5px;
-  color: #d65a31;
+  color: var(--accent);
 }
 
 .nav-btn {
