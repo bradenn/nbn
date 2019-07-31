@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" <% if(user != null){ %>data-theme="<%= user.theme %>"<% }else{ %> data-theme="dark" <% } %>>
 <%- include("partials/header.ejs"); %>
 
 <body>

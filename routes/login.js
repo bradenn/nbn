@@ -1,5 +1,6 @@
 let router = require('express').Router();
 let User = require('../models/user');
+let faker = require('faker');
 
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
@@ -10,6 +11,12 @@ router.get('/', function(req, res, next) {
     });
   });
 });
+
+function getRand(t) {
+  var c = t.length;
+  var z = Math.floor(Math.random() * c);
+  return t[z];
+}
 
 router.post('/', function(req, res, next) {
   if (req.body.password !== req.body.confPassword) {
@@ -28,61 +35,60 @@ router.post('/', function(req, res, next) {
       password: req.body.password
     }
     User.create(userData, function(error, user) {
-      if (error) {
-        return res.render("login", {
-          title: "Login",
-          user: user,
-          error: {
-            type: "register",
-            message: "This username or email is taken."
-          }
-        });
-      } else {
-        req.session.userId = user._id;
-
-        return res.redirect('/');
-      }
-    });
-  } else if (req.body.logUser && req.body.logPassword) {
-    User.authenticate(req.body.logUser, req.body.logPassword, function(error, user) {
-      if (error || !user) {
-        User.findById(req.session.userId)
-          .exec(function(error, user) {
-            if (error) {
-              return next(error);
-            } else {
-              return res.render("login", {
-                title: "Login",
-                user: user,
-                error: {
-                  type: "login",
-                  message: "Incorrect username or password"
-                }
-              });
-            }
-          });
-      } else {
-        req.session.userId = user._id;
-        return res.redirect('/');
-      }
-    });
-  } else {
-    User.findById(req.session.userId)
-      .exec(function(error, user) {
         if (error) {
-          return next(error);
-        } else {
           return res.render("login", {
             title: "Login",
             user: user,
             error: {
               type: "register",
-              message: "All fields must be complete"
+              message: "This username or email is taken."
             }
           });
+        } else {
+          req.session.userId = user._id;
+          return res.redirect('/');
         }
-      });
-  }
+    });
+} else if (req.body.logUser && req.body.logPassword) {
+  User.authenticate(req.body.logUser, req.body.logPassword, function(error, user) {
+    if (error || !user) {
+      User.findById(req.session.userId)
+        .exec(function(error, user) {
+          if (error) {
+            return next(error);
+          } else {
+            return res.render("login", {
+              title: "Login",
+              user: user,
+              error: {
+                type: "login",
+                message: "Incorrect username or password"
+              }
+            });
+          }
+        });
+    } else {
+      req.session.userId = user._id;
+      return res.redirect('/');
+    }
+  });
+} else {
+  User.findById(req.session.userId)
+    .exec(function(error, user) {
+      if (error) {
+        return next(error);
+      } else {
+        return res.render("login", {
+          title: "Login",
+          user: user,
+          error: {
+            type: "register",
+            message: "All fields must be complete"
+          }
+        });
+      }
+    });
+}
 });
 
 module.exports = router;

@@ -19,14 +19,15 @@ let UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Notification'
   }],
-  teams: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Team'
-  }],
   firstname: String,
   lastname: String,
   password: String,
-  picture: String
+  picture: String,
+  theme: {
+    type: String,
+    enum: ['dark', 'light'],
+    default: 'dark'
+  }
 });
 
 // Load plugin to automatically populate nested queries
