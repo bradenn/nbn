@@ -19,6 +19,11 @@ let UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Notification'
   }],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    autopopulate: true
+  }],
   firstname: String,
   lastname: String,
   password: String,

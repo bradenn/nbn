@@ -15,7 +15,6 @@
         </li>
 
         <% if(user != null){ %>
-
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="material-icons link-elem">notifications</i><span class="link-elem link-text">Notifications</span>&nbsp;<span class="badge badge-secondary"><%= user.notifications.length %></span>
@@ -32,12 +31,26 @@
         </form>
       </ul>
       <ul class="nav navbar-nav mr-right">
-        <% if(user != null){ %>
         <li class="nav-item">
-          <a href="/profile" class="no-hover">
-            <img src="<%= user.picture %>" class="nav-img" />
-            <span class="nav-img-text"><%= user.firstname %></span>
+          <a class="nav-link" href="#"><i class="material-icons link-elem">whatshot</i><span class="link-elem link-text">Trending</span></a>
+        </li>
+        <% if(user != null){ %>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="<%= user.picture %>" class="link-elem nav-image-link" /><span class="link-elem link-text"><%= user.username %></span>
           </a>
+          <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+            <h6 class="dropdown-header">User Prefrences</h6>
+            <a class="dropdown-item" href="/profile"><i class="fas fa-user link-elem"></i><span class="link-elem link-text">Profile</span></a>
+            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt link-elem"></i><span class="link-elem link-text">Logout</span></a>
+            <h6 class="dropdown-header">Display Prefrences</h6>
+            <% if(user.theme == "light"){ %>
+            <a class="dropdown-item" href="/profile/edit/theme/dark"><i class="fas fa-moon link-elem"></i><span class="link-elem link-text">Dark mode</span></a>
+            <% }else if(user.theme == "dark"){ %>
+              <a class="dropdown-item" href="/profile/edit/theme/light"><i class="fas fa-sun link-elem"></i><span class="link-elem link-text">Light mode</span></a>
+            <% } %>
+
+          </div>
         </li>
         <% }else{ %>
         <li class="nav-item">

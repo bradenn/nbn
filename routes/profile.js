@@ -11,6 +11,17 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/edit/theme/:mode', function(req, res, next) {
+  User.findById(req.session.userId, function(err, user) {
+    user.theme = req.params.mode;
+    user.save(function(err){
+      res.redirect(req.get('referer'));
+    });
+  });
+
+});
+
+
 router.post('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     console.log(req.body);

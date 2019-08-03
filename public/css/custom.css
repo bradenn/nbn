@@ -1,6 +1,7 @@
 html[data-theme='dark'] {
   --background: rgba(0, 0, 0, 1);
   --secondary: rgba(33, 33, 33, 0.72);
+  --secondary-solid: rgba(33, 33, 33, 1);
   --accent: rgb(255, 149, 0);
   --accent-dim: rgb(255, 149, 0, 0.12);
   --text: #fff;
@@ -10,8 +11,25 @@ html[data-theme='dark'] {
 html[data-theme='light'] {
   --background: rgba(239, 239, 244, 1);
   --secondary: rgba(248, 248, 248, 0.72);
+  --secondary-solid: rgba(248, 248, 248, 1);
   --accent: rgba(0, 122, 255, 1);
+  --accent-dim: rgb(0, 122, 255, 0.12);
   --text: #000;
+  --primary: rgba(0, 122, 255, 1);
+}
+
+.ql-toolbar{
+  background-color: white !important;
+}
+
+.ql-editor{
+  background-color: white !important;
+  color: #000;
+  min-height: 120px;
+}
+
+.ql-snow.ql-toolbar button:hover, .ql-snow.ql-toolbar button.ql-active{
+    color:var(--accent) !important;
 }
 
 .navbar-brand {
@@ -54,6 +72,28 @@ html[data-theme='light'] {
 .header {
   background-color: var(--accent);
   padding: 32px 0px;
+}
+
+.card{
+  padding:8px;
+}
+
+.nav-image-link{
+  height:24px;
+  width:24px;
+  border-radius: 50%;
+}
+
+.dropdown-menu{
+  background-color: var(--secondary-solid);
+  color: var(--text) !important;
+}
+
+.dropdown-item{
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .header-title {
@@ -263,6 +303,8 @@ box-shadow: 0 1px 1px 0 rgba(60, 64, 67, .08), 0 1px 3px 1px rgba(60, 64, 67, .1
   font-family: 'IBM Plex Sans', sans-serif;
   opacity: 0.5;
   display:block;
+  max-height:42px;
+  overflow: hidden;
 }
 
 .topic-inline-image{
@@ -473,7 +515,7 @@ a.text-primary:focus, a.text-primary:active, a.text-primary:hover {
   height: 100%;
   font-size: 13px;
   font-weight: 600;
-  border-bottom: 2px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
   font-family: 'IBM Plex Sans', sans-serif;
 }
 

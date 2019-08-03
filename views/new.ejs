@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" <% if(user != null){ %>data-theme="<%= user.theme %>" <% }else{ %> data-theme="dark" <% } %>>
 <%- include("partials/header.ejs"); %>
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <body>
   <%- include("partials/nav.ejs"); %>
@@ -11,17 +12,18 @@
         <h5 class="text-white">New Topic</h5>
         <div class="card" style="">
           <div class="card-body">
-            <form method="post" action="/new/topic">
+            <form method="post" action="/new/topic" id="form">
               <div class="form-group">
                 <input readonly onfocus="if (this.hasAttribute('readonly')) {
     this.removeAttribute('readonly');
     this.blur();    this.focus();  }" type="text" class="form-control" id="title" name="title" placeholder="Title">
               </div>
               <div class="form-group">
-                <textarea rows="4" class="form-control" placeholder="Post" eadonly name="body" onfocus="if (this.hasAttribute('readonly')) {
-    this.removeAttribute('readonly');
-    this.blur();    this.focus();  }"></textarea>
+                <input type="text" name="body" id="body" hidden>
+
+                <div id="quillEditor">
                 </div>
+              </div>
               <button type="submit" class="btn btn-primary">Submit</button>
               <small class="text-warning"><% if(typeof error != 'undefined'){ if(error.type == "login"){ %> <%= error.message %> <% } } %></small>
             </form>
@@ -32,5 +34,29 @@
     </div>
   </div>
 </body>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+  var quill = new Quill('#quillEditor', {
+    modules: {
+      toolbar: [
+        ['bold', 'italic'],
+        ['link', 'blockquote', 'code-block', 'image'],
+        [{
+          list: 'ordered'
+        }, {
+          list: 'bullet'
+        }]
+      ]
+    },
+    placeholder: 'Compose an epic...',
+    theme: 'snow'
+  });
+  var justHtmlContent = document.getElementById('body');
+  quill.on("text-change", function() {
+    var justHtml = quill.root.innerHTML;
+    justHtmlContent.value = justHtml;
+  });
+</script>
 
 </html>

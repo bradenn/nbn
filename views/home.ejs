@@ -12,22 +12,17 @@
             <a href="/new" class="btn btn-primary side-col">New Topic</a>
             <hr>
             <ul class="list-group">
-              <li class="list-group-item active"><i class="fas fa-stream drawer-icon"></i><a href="#" class="drawer-link">All Discussion</a></li>
-              <li class="list-group-item"><i class="fas fa-list drawer-icon"></i><a href="#" class="drawer-link">Following</a></li>
-              <li class="list-group-item"><i class="fas fa-tags drawer-icon"></i><a href="#" class="drawer-link">Tags</a></li>
+              <li class="list-group-item <%= (query != "following")?"active":"" %>"><i class="fas fa-stream drawer-icon"></i><a href="/" class="drawer-link">All Discussion</a></li>
+              <li class="list-group-item <%= (query == "following")?"active":"" %>"><i class="fas fa-list drawer-icon"></i><a href="/?s=following" class="drawer-link">Following</a></li>
+            </ul>
+            <ul class="list-group">
+              <!--
+              <li class="list-group-item"><img src="<%= user.following[0].picture %>" style="width: 24px; height:24px; border-radius:50%;"><a href="/?s=following" class="drawer-link"><%= user.following[0].username %></a></li>
+              -->
             </ul>
           </div>
-          <div class="col-md-10">
-            <div class="btn-group float-right">
-              <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Latest
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Latest</a>
-                <a class="dropdown-item" href="#">Hot</a>
-                <a class="dropdown-item" href="#">Date</a>
-              </div>
-            </div>
+          <div class="col-md-8">
+
             <% topics.forEach(function(topic){ %>
             <a href="/topic/<%= topic._id %>" class="no-bs">
               <div class="topic-inline">
@@ -39,11 +34,23 @@
                   <span class="topic-inline-subtext">Last updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
                 </div>
                 <div class="topic-inline-preview">
-                  <span class="topic-inline-preview-text"><%= topic.body %></span>
+                  <span class="topic-inline-preview-text"><%- topic.body %></span>
                 </div>
               </div>
             </a>
             <% }); %>
+          </div>
+          <div class="col-md-2">
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Latest
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/?sort=latest&&s=<%= query %>">Latest</a>
+                <a class="dropdown-item" href="/?sort=hot&&s=<%= query %>">Hot</a>
+                <a class="dropdown-item" href="/?sort=date&&s=<%= query %>">Date</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -59,23 +66,23 @@ function timeSince(date) {
 
   var interval = Math.floor(seconds / 31536000);
 
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " years";
   }
   interval = Math.floor(seconds / 2592000);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " months";
   }
   interval = Math.floor(seconds / 86400);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " days";
   }
   interval = Math.floor(seconds / 3600);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " hours";
   }
   interval = Math.floor(seconds / 60);
-  if (interval > 1) {
+  if (interval >= 1) {
     return interval + " minutes";
   }
   return Math.floor(seconds) + " seconds";

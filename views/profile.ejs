@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" <% if(user != null){ %>data-theme="<%= user.theme %>"<% }else{ %> data-theme="dark" <% } %>>
+<html lang="en" <% if(user != null){ %>data-theme="<%= user.theme %>" <% }else{ %> data-theme="dark" <% } %>>
 <%- include("partials/header.ejs"); %>
 
 <body>
@@ -14,83 +14,83 @@
           <div class="card-body">
             <% if(user.profile != null) {%>
             <form action="/profile" method="post">
-            <div class="form-element">
-              <div class="form-group form-group-block">
-                <label class="form-nomargin">Gender</label>
-                <small class="form-text text-muted form-nomargin"><%= user.profile.gender %></small>
+              <div class="form-element">
+                <div class="form-group form-group-block">
+                  <label class="form-nomargin">Gender</label>
+                  <small class="form-text text-muted form-nomargin"><%= user.profile.gender %></small>
+                </div>
+                <div class="form-group form-group-block float-right">
+                  <select class="form-control" name="gender">
+                    <option><%= user.profile.gender %></option>
+                    <option disabled>_________</option>
+                    <option>male</option>
+                    <option>female</option>
+                    <option>other</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group form-group-block float-right">
-                <select class="form-control" name="gender">
-                  <option><%= user.profile.gender %></option>
-                  <option disabled>_________</option>
-                  <option>male</option>
-                  <option>female</option>
-                  <option>other</option>
-                </select>
+              <div class="form-element">
+                <div class="form-group form-group-block">
+                  <label class="form-nomargin">Sexuality</label>
+                  <small class="form-text text-muted form-nomargin"><%= user.profile.sexuality %></small>
+                </div>
+                <div class="form-group form-group-block float-right">
+                  <select class="form-control" name="sexuality">
+                    <option><%= user.profile.sexuality %></option>
+                    <option disabled>_________</option>
+                    <option>straight</option>
+                    <option>gay</option>
+                    <option>bisexual</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="form-element">
-              <div class="form-group form-group-block">
-                <label class="form-nomargin">Sexuality</label>
-                <small class="form-text text-muted form-nomargin"><%= user.profile.sexuality %></small>
+              <div class="form-element">
+                <div class="form-group form-group-block">
+                  <label class="form-nomargin">Gender Preference</label>
+                  <small class="form-text text-muted form-nomargin"><%= user.profile.gender_preference %></small>
+                </div>
+                <div class="form-group form-group-block float-right">
+                  <select class="form-control" name="gender_preference">
+                    <option><%= user.profile.gender_preference %></option>
+                    <option disabled>_________</option>
+                    <option>male</option>
+                    <option>female</option>
+                    <option>both</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group form-group-block float-right">
-                <select class="form-control" name="sexuality">
-                  <option><%= user.profile.sexuality %></option>
-                  <option disabled>_________</option>
-                  <option>straight</option>
-                  <option>gay</option>
-                  <option>bisexual</option>
-                </select>
+              <div class="form-element">
+                <div class="form-group form-group-block">
+                  <label class="form-nomargin">Looking for a</label>
+                  <small class="form-text text-muted form-nomargin"><%= user.profile.interest %></small>
+                </div>
+                <div class="form-group form-group-block float-right">
+                  <select class="form-control" name="interest">
+                    <option><%= user.profile.interest %></option>
+                    <option disabled>_________</option>
+                    <option>friend</option>
+                    <option>date</option>
+                    <option>fwb</option>
+                    <option>hookup</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="form-element">
-              <div class="form-group form-group-block">
-                <label class="form-nomargin">Gender Preference</label>
-                <small class="form-text text-muted form-nomargin"><%= user.profile.gender_preference %></small>
+              <div class="form-element">
+                <div class="form-group form-group-block">
+                  <label class="form-nomargin">Birthdate</label>
+                  <small class="form-text text-muted form-nomargin"><%= user.profile.birthdate %></small>
+                </div>
               </div>
-              <div class="form-group form-group-block float-right">
-                <select class="form-control" name="gender_preference">
-                  <option><%= user.profile.gender_preference %></option>
-                  <option disabled>_________</option>
-                  <option>male</option>
-                  <option>female</option>
-                  <option>both</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-element">
-              <div class="form-group form-group-block">
-                <label class="form-nomargin">Looking for a</label>
-                <small class="form-text text-muted form-nomargin"><%= user.profile.interest %></small>
-              </div>
-              <div class="form-group form-group-block float-right">
-                <select class="form-control" name="interest">
-                  <option><%= user.profile.interest %></option>
-                  <option disabled>_________</option>
-                  <option>friend</option>
-                  <option>date</option>
-                  <option>fwb</option>
-                  <option>hookup</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-element">
-              <div class="form-group form-group-block">
-                <label class="form-nomargin">Birthdate</label>
-                <small class="form-text text-muted form-nomargin"><%= user.profile.birthdate %></small>
-              </div>
-            </div>
-            <button href="#" class="btn btn-primary float-right">Update</button>
-          </form>
-          <% } %>
+              <button href="#" class="btn btn-primary float-right">Update</button>
+            </form>
+            <% } %>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card">
           <div class="card-head">
-            <span class="card-head-title">Basic Settings</span>
+            <span class="card-head-title">Basic Settings<a href="/logout" class="float-right text-primary">logout</a></span>
           </div>
           <div class="card-body">
             <div class="form-element">
@@ -112,20 +112,27 @@
               </div>
             </div>
             <div class="form-element">
-              <div class="form-group form-group-block">
-                <label class="form-nomargin">Profile Picture</label>
-                <small class="form-text text-muted form-nomargin">What others see on your profile.</small>
-              </div>
-              <div class="form-group form-group-block float-right">
-                <form action="/picture/image-upload" method="post" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <input type="file" name="image" id="image">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                  </div>
+              <form action="/picture/image-upload" method="post" enctype="multipart/form-data">
+                <div class="form-group form-group-block">
+                  <label class="form-nomargin">Profile Picture</label>
+                  <small class="form-text text-muted form-nomargin">What others see on your profile.</small>
 
-                </form>
-              </div>
+                  <div class="input-group">
+
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="image" name="image">
+                      <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group form-group-block float-right">
+                  <button type="submit" href="#" class="btn btn-primary">Upload</button>
+                </div>
+              </form>
             </div>
+
+
 
 
           </div>
