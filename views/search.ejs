@@ -23,7 +23,24 @@
           <span class="text-muted text-sm">Query returned <%= topics.length %> item(s).</span>
           <% } %>
         </div>
+        <% if(users != null){ %>
+          <span class="text-light text-xl">Users:</span>
+        <% users.forEach(function(usr){ %>
+        <a href="/u/<%= usr.username %>" class="no-bs">
+          <div class="topic-inline">
+            <div class="topic-inline-element margin-right">
+              <img src="<%= usr.picture %>" class="topic-inline-image">
+            </div>
+            <div class="topic-inline-element">
+              <span class="topic-inline-title"><%= usr.username %></span>
+            </div>
+          </div>
+        </a>
+        <% }); } if(users.length == 0){ %>
+        <span class="text-muted">No results found for "<i><%= query %></i>"</span>
+        <% } %>
         <% if(topics != null){ %>
+            <span class="text-light text-xl">Topics:</span>
         <% topics.forEach(function(topic){ %>
         <a href="/topic/<%= topic._id %>" class="no-bs">
           <div class="topic-inline">

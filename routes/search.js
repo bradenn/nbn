@@ -19,12 +19,22 @@ router.get('/', function(req, res, next) {
           }]
         },
         function(err, topics) {
-          return res.render("search", {
-            title: "Search",
-            user: user,
-            topics: topics,
-            query: req.query.q
-          });
+          User.find({
+              "username": {
+                "$regex": req.query.q,
+                "$options": 'i'
+              }
+            },
+            function(err, users) {
+              return res.render("search", {
+                title: "Search",
+                user: user,
+                topics: topics,
+                query: req.query.q,
+                users: users
+              });
+            });
+
         });
 
     } else {

@@ -32,12 +32,12 @@
       </ul>
       <ul class="nav navbar-nav mr-right">
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="material-icons link-elem">whatshot</i><span class="link-elem link-text">Trending</span></a>
+          <a class="nav-link" href="/messages"><i class="material-icons link-elem">chat_bubble</i><span class="link-elem link-text">Messages</span></a>
         </li>
         <% if(user != null){ %>
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="<%= user.picture %>" class="link-elem nav-image-link" /><span class="link-elem link-text"><%= user.username %></span>
+            <img src="<%= user.picture %>" class="link-elem nav-image-link"/><span class="link-elem link-text"><%= user.username %></span>
           </a>
           <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
             <h6 class="dropdown-header">User Prefrences</h6>
