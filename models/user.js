@@ -32,7 +32,8 @@ let UserSchema = new mongoose.Schema({
     type: String,
     enum: ['dark', 'light'],
     default: 'dark'
-  }
+  },
+  date: String
 });
 
 // Load plugin to automatically populate nested queries

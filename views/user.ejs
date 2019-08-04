@@ -13,33 +13,76 @@
               <img src="<%= target.picture %>" class="user-img">
             </div>
             <div class="cont">
-              <h5><%= target.firstname %> <%= target.lastname %></h5>
+              <span class="title"><%= target.firstname %> <%= target.lastname %></span>
+              <span class="sub-title">Following: <b><%= target.following.length %></b> Followers: <b><%= followers.length %></b></span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-3">
-        <div class="card">
-          <div class="card-head" style="margin-bottom:8px;">
-            <span class="card-head-title">Actions</span>
-          </div>
-          <div class="">
-            <% var c = false;
-            user.following.forEach(function(tar){
-            if(tar._id.toString() == target._id.toString()){
-            c = true;
-            }
-          });
-          %>
-            <% if(c){ %>
-            <a href="/u/<%= target._id %>/unfollow" class="btn btn-secondary">Unfollow</a>
-            <%}else{%>
-            <a href="/u/<%= target._id %>/follow" class="btn btn-primary">Follow</a>
-            <% } %>
+      <div class="col-md-2">
+        <% var c = false;
+        user.following.forEach(function(tar){
+        if(tar._id.toString() == target._id.toString()){
+        c = true;
+        }
+      });
+      %>
+        <% if(c){ %>
+        <a href="/u/<%= target._id %>/unfollow" class="btn btn-secondary">Unfollow</a>
+        <a href="/messages/?to=<%= target._id %>" class="btn btn-primary">Message</a>
+        <%}else{%>
+        <a href="/u/<%= target._id %>/follow" class="btn btn-primary">Follow</a>
+        <% } %>
+
+      </div>
+      <div class="col-md-8">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-topics" role="tab" aria-controls="pills-home" aria-selected="true">Topics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-profile" aria-selected="false">Comments</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-topics" role="tabpanel" aria-labelledby="pills-home-tab"><% topics.forEach(function(topic){ %>
+            <a href="/topic/<%= topic._id %>" class="no-bs">
+              <div class="topic-inline">
+                <div class="topic-inline-element margin-right">
+                  <img src="<%= topic.owner.picture %>" class="topic-inline-image">
+                </div>
+                <div class="topic-inline-element">
+                  <span class="topic-inline-title"><%= topic.title %></span>
+                  <span class="topic-inline-subtext">Last updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
+                </div>
+                <div class="topic-inline-preview">
+                  <span class="topic-inline-preview-text"><%- topic.body %></span>
+                </div>
+              </div>
+            </a>
+            <% }); %></div>
+          <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <ul>
+              <% comments.forEach(function(comment){ %>
+              <li class="comment">
+                <div class="comment-inline">
+                  <span class="title"><a href="/u/<%= comment.user.username %>" class="no-bs"><%= comment.user.username %></a></span>
+                </div>
+                <span class="sub-title">posted <strong><%= timeSince(new Date(comment.date)) %></strong> ago</span>
+                <p><%= comment.text %></p>
+              </li>
+              <% }); %>
+              <% if(comments.length <= 0){ %>
+              <li class="comment">
+                <span class="title">No comments</span>
+              </li>
+              <% } %>
+            </ul>
           </div>
         </div>
+
       </div>
     </div>
   </div>

@@ -1,5 +1,7 @@
 var router = require('express').Router();
 let User = require('../models/user');
+let Topic = require('../models/topic');
+let Comment = require('../models/comment');
 
 router.get('/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
@@ -9,11 +11,28 @@ router.get('/:id', function(req, res, next) {
         "$options": 'i'
       }
     }, function(err, target) {
-      return res.render("user", {
-        title: "User",
-        user: user,
-        target: target
+      Topic.find({
+        owner: user._id
+      }, function(err, topics) {
+        Comment.find({
+          user: user._id
+        }, function(err, comments) {
+          User.find({
+            "following.id": { "$in": [target._id] }
+            }, function(err, followers) {
+            return res.render("user", {
+              title: "User",
+              user: user,
+              target: target,
+              topics: topics,
+              comments: comments,
+              followers: followers
+            });
+          });
+
+        });
       });
+
     });
   });
 });

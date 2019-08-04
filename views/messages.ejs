@@ -22,7 +22,7 @@
           <div class="card" style="">
             <div class="card-head">
               <% if(target != null){ %>
-              <span class="card-head-title"><%= target.firstname %> <%= target.lastname %></span>
+              <span class="card-head-title"><%= target.firstname %> <%= target.lastname %><span class="float-right"><a href="/u/<%= target.username %>" class="no-bs"><i class="fas fa-ellipsis-h"></i></a></span></span>
               <% } %>
             </div>
             <div class="card-body" style="padding:0px;">
@@ -43,9 +43,9 @@
           </div>
           <form action="/messages/send/<%= query %>" method="post">
             <div class="input-group mb-3">
-              <input type="text" name="text" class="form-control form-msg msg-send" placeholder="Message">
+              <input type="text" name="text" class="form-control form-msg" placeholder="Message">
               <div class="input-group-append">
-                <button class="btn btn-primary msg-send" type="submit">Send</button>
+                <button class="btn btn-primary" type="submit">Send</button>
               </div>
             </div>
 
