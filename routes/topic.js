@@ -36,4 +36,23 @@ router.post('/:id/comment', function(req, res, next) {
   });
 });
 
+router.get('/:id/:opt', function(req, res, next) {
+  User.findById(req.session.userId, function(err, user) {
+    Topic.findById(req.params.id, function(err, topic) {
+      if(req.params.opt == "save"){
+        user.saved.push(topic._id);
+        user.save(function(err){
+          res.redirect(req.get('referer'));
+        });
+      }
+      if(req.params.opt == "unsave"){
+        user.saved.pull(topic._id);
+        user.save(function(err){
+          res.redirect(req.get('referer'));
+        });
+      }
+    });
+  });
+});
+
 module.exports = router;

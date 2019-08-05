@@ -24,6 +24,10 @@ let UserSchema = new mongoose.Schema({
     ref: 'User',
     autopopulate: true
   }],
+  saved: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Topic'
+  }],
   firstname: String,
   lastname: String,
   password: String,
