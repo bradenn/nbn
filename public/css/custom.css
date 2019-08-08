@@ -45,10 +45,12 @@ html[data-theme='light'] {
 
 .topic-image-full{
   height: 200px;
-  width: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  margin-left: 60px;
 }
 
 .article {
