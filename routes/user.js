@@ -12,10 +12,10 @@ router.get('/:id', function(req, res, next) {
       }
     }, function(err, target) {
       Topic.find({
-        owner: user._id
+        owner: target._id
       }, function(err, topics) {
         Comment.find({
-          user: user._id
+          user: target._id
         }, function(err, comments) {
           User.find({
             "following.id": { "$in": [target._id] }
