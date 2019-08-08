@@ -43,6 +43,8 @@ html[data-theme='light'] {
   margin: 10px 15px;
 }
 .article {
+  border-radius: 8px;
+  border: 1px solid var(--secondary);
   margin:10px 15px;
   background-repeat: no-repeat;
   background-position: center;
