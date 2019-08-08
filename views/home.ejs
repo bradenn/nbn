@@ -11,14 +11,16 @@
           <div class="col-md-12">
             <div class="articles">
               <% topics.forEach(function(topic){ %>
-              <div clss="article-cont">
-                <div class="article" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url(<%= topic.picture %>);">
-                  <div class="title">
-                    <%= topic.title %>
-                    <span class="topic-inline-subtext">by <strong><%= topic.owner.username %></strong> updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
+              <a href="/topic/<%= topic._id%>" class="no-bs">
+                <div clss="article-cont">
+                  <div class="article" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)), url(<%= topic.picture %>);">
+                    <div class="title">
+                      <%= topic.title %>
+                      <span class="topic-inline-subtext">by <strong><%= topic.owner.username %></strong> updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
               <% }); %>
             </div>
           </div>
