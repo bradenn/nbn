@@ -18,6 +18,8 @@
           <div class="topic-element float-right">
             <span class="topic-subtext">Last updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
           </div>
+          <div class="topic-image-full" style="background-image: url(<%= topic.picture %>);">
+          </div>
           <div class="topic-preview">
             <span class="topic-preview-text"><%- topic.body %></span>
           </div>

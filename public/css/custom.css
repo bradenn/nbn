@@ -42,6 +42,15 @@ html[data-theme='light'] {
 .article-cont {
   margin: 10px 15px;
 }
+
+.topic-image-full{
+  height: 200px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .article {
   border-radius: 8px;
   border: 1px solid var(--secondary);
