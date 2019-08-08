@@ -8,54 +8,24 @@
     <div class="row">
       <div class="col-md-12">
         <div class="row">
-          <div class="col-md-2">
-            <a href="/new" class="btn btn-primary side-col">New Topic</a>
-            <hr>
-            <ul class="list-group">
-              <li class="list-group-item <%= (query != "following")?"active":"" %>"><i class="fas fa-stream drawer-icon"></i><a href="/" class="drawer-link">All Discussion</a></li>
-              <li class="list-group-item <%= (query == "following")?"active":"" %>"><i class="fas fa-list drawer-icon"></i><a href="/?s=following" class="drawer-link">Following</a></li>
-            </ul>
-            <ul class="list-group">
-              <!--
-              <li class="list-group-item"><img src="<%= user.following[0].picture %>" style="width: 24px; height:24px; border-radius:50%;"><a href="/?s=following" class="drawer-link"><%= user.following[0].username %></a></li>
-              -->
-            </ul>
-          </div>
-          <div class="col-md-8">
-
-            <% topics.forEach(function(topic){ %>
-            <a href="/topic/<%= topic._id %>" class="no-bs">
-              <div class="topic-inline">
-                <div class="topic-inline-element margin-right">
-                  <img src="<%= topic.owner.picture %>" class="topic-inline-image">
-                </div>
-                <div class="topic-inline-element">
-                  <span class="topic-inline-title"><%= topic.title %></span>
-                  <span class="topic-inline-subtext">Last updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
-                </div>
-                <div class="topic-inline-preview">
-                  <span class="topic-inline-preview-text"><%- topic.body %></span>
+          <div class="col-md-12">
+            <div class="articles">
+              <% topics.forEach(function(topic){ %>
+              <div clss="article-cont">
+                <div class="article" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(<%= topic.picture %>);">
+                  <div class="title">
+                    <%= topic.title %>
+                    <span class="topic-inline-subtext">Last updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
+                  </div>
                 </div>
               </div>
-            </a>
-            <% }); %>
-          </div>
-          <div class="col-md-2">
-            <div class="btn-group">
-              <button type="button" class="btn btn-outline-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Latest
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="/?sort=latest&&s=<%= query %>">Latest</a>
-                <a class="dropdown-item" href="/?sort=hot&&s=<%= query %>">Hot</a>
-                <a class="dropdown-item" href="/?sort=date&&s=<%= query %>">Date</a>
-              </div>
+              <% }); %>
             </div>
           </div>
         </div>
       </div>
-    </div>
 </body>
+<%- include("partials/footer.ejs"); %>
 
 </html>
 <%

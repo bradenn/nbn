@@ -11,6 +11,7 @@ let TopicSchema = new mongoose.Schema({
     autopopulate: true
   },
   body: String,
+  picture: String,
   date: String
 });
 

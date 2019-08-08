@@ -1,43 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark normal" style="background-color:var(--background)">
+  <div class="container">
+<a class="navbar-brand" href="/">Zewmer</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="container">
-    <a class="navbar-brand" href="/">UGE</a>
+
+
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav navbar-nav mr-auto">
-        <li class="nav-item active">
+      <ul class="navbar-nav navbar-nav mr-auto" >
+        <li class="nav-item">
           <a class="nav-link" href="/"><i class="material-icons link-elem">home</i><span class="link-elem link-text">Home</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#"><i class="material-icons link-elem">whatshot</i><span class="link-elem link-text">Trending</span></a>
         </li>
-
-        <% if(user != null){ %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="material-icons link-elem">notifications</i><span class="link-elem link-text">Notifications</span>&nbsp;<span class="badge badge-secondary"><%= user.notifications.length %></span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <% for(var i = 0; i < user.notifications.length; i++){ %>
-            <%= user.notifications[i] %>
-            <% } %>
-          </div>
-        </li>
-        <% } %>
         <form class="form-inline my-2 my-lg-0" action="/search/" method="get">
           <input class="form-control mr-sm-2 nav-search" type="search" placeholder="Search" name="q" id="q" aria-label="Search">
         </form>
       </ul>
       <ul class="nav navbar-nav mr-right">
-        <li class="nav-item">
-          <a class="nav-link" href="/messages"><i class="material-icons link-elem">chat_bubble</i><span class="link-elem link-text">Messages</span></a>
-        </li>
+
         <% if(user != null){ %>
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="<%= user.picture %>" class="link-elem nav-image-link"/><span class="link-elem link-text"><%= user.username %></span>
+            <img src="<%= user.picture %>" class="link-elem nav-image-link" /><span class="link-elem link-text"><%= user.username %></span>
           </a>
           <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
             <h6 class="dropdown-header">User Prefrences</h6>
@@ -47,16 +33,53 @@
             <% if(user.theme == "light"){ %>
             <a class="dropdown-item" href="/profile/edit/theme/dark"><i class="fas fa-moon link-elem"></i><span class="link-elem link-text">Dark mode</span></a>
             <% }else if(user.theme == "dark"){ %>
-              <a class="dropdown-item" href="/profile/edit/theme/light"><i class="fas fa-sun link-elem"></i><span class="link-elem link-text">Light mode</span></a>
+            <a class="dropdown-item" href="/profile/edit/theme/light"><i class="fas fa-sun link-elem"></i><span class="link-elem link-text">Light mode</span></a>
             <% } %>
 
           </div>
         </li>
         <% }else{ %>
         <li class="nav-item">
-          <a class="btn btn-primary nav-btn" href="/login">Login</a>
+          <a class="nav-link btn btn-primary nav-btn" href="/login">Login</a>
         </li>
         <% } %>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+<nav class="navbar navbar-expand navbar-dark bg-dark mini-bar d-none d-sm-block">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav navbar-nav mr-auto no-ul">
+        <li class="nav-item active ">
+          <a class="nav-link no-ul" href="/">U.S.</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link no-ul" href="/">World</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link no-ul" href="/">Politics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link no-ul" href="/">Business</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link no-ul" href="/">Tech</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link no-ul" href="/">Health</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link no-ul" href="/">Entertainment</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link no-ul" href="/">Opinion</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav mr-right">
+
+
       </ul>
     </div>
 

@@ -2,6 +2,8 @@ let router = require('express').Router();
 let User = require('../models/user');
 let Topic = require('../models/topic');
 
+
+
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     if (user == null) return res.redirect("/login");
@@ -11,16 +13,18 @@ router.get('/', function(req, res, next) {
     });
   });
 });
+const upload = require('../services/aws-upload');
+const singleUpload = upload.single('image');
 
-router.post('/topic', function(req, res, next) {
+router.post('/topic', upload.single('image'), function(req, res, next) {
 
   var topicData = {
     title: req.body.title,
     owner: req.session.userId,
     body: req.body.body,
+    picture: req.file.location,
     date: new Date()
   }
-
 
   Topic.create(topicData, function(error, topic) {
     if (error) {
@@ -29,6 +33,7 @@ router.post('/topic', function(req, res, next) {
       return res.redirect("/topic/" + topic._id);
     }
   });
+
 });
 
 function getRand(t) {
