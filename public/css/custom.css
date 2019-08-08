@@ -50,11 +50,10 @@ html[data-theme='light'] {
   background-position: center;
   background-size: cover;
   height: 200px;
-  width:400px;
+  width:100%;
   overflow-x: auto;
   word-wrap: normal;
   padding: 10px 15px;
-  display: table-cell;
   vertical-align: bottom;
 }
 
