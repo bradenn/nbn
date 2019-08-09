@@ -15,7 +15,7 @@ let TopicSchema = new mongoose.Schema({
   section: {
     type: String,
     enum: ['us', 'world', 'politics', 'business', 'tech', 'health', 'entertainment', 'opinion'],
-    default: 'interaction'
+    default: 'us'
   },
   tags: [String],
   date: String
