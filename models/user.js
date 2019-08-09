@@ -37,6 +37,11 @@ let UserSchema = new mongoose.Schema({
     enum: ['dark', 'light'],
     default: 'dark'
   },
+  account: {
+    type: String,
+    enum: ['user', 'writer', 'admin', 'superuser'],
+    default: 'user'
+  },
   date: String
 });
 

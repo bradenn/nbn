@@ -34,6 +34,7 @@ router.post('/', function(req, res, next) {
       lastname: req.body.lastname,
       password: req.body.password,
       picture: "https://bn-media-aws.s3.us-west-2.amazonaws.com/1564603161391",
+      account: "user",
       date: new Date()
     }
     User.create(userData, function(error, user) {

@@ -745,6 +745,7 @@ ul {
 .card-head {
   text-align: center;
   border-bottom: 1px solid var(--grey);
+  padding-bottom: 8px;
 }
 
 .card-head-title {
@@ -752,6 +753,7 @@ ul {
   height: 100%;
   font-size: 16px;
   font-weight: 600;
+
   border-bottom: 2px solid rbga(0, 0, 0, 0);
   font-family: 'IBM Plex Sans', sans-serif;
 }
