@@ -12,6 +12,12 @@ let TopicSchema = new mongoose.Schema({
   },
   body: String,
   picture: String,
+  section: {
+    type: String,
+    enum: ['us', 'world', 'politics', 'business', 'tech', 'health', 'entertainment', 'opinion'],
+    default: 'interaction'
+  },
+  tags: [String],
   date: String
 });
 

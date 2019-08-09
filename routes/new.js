@@ -2,8 +2,6 @@ let router = require('express').Router();
 let User = require('../models/user');
 let Topic = require('../models/topic');
 
-
-
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     if (user == null) return res.redirect("/login");
@@ -13,6 +11,7 @@ router.get('/', function(req, res, next) {
     });
   });
 });
+
 const upload = require('../services/aws-upload');
 const singleUpload = upload.single('image');
 
@@ -23,6 +22,7 @@ router.post('/topic', upload.single('image'), function(req, res, next) {
     owner: req.session.userId,
     body: req.body.body,
     picture: req.file.location,
+    section: req.body.section,
     date: new Date()
   }
 

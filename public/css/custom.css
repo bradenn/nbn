@@ -55,7 +55,7 @@ html[data-theme='light'] {
 
 .article {
   border-radius: 8px;
-  border: 1px solid var(--secondary);
+  /* /border: 1px solid var(--secondary); */
   margin:10px 15px;
   background-repeat: no-repeat;
   background-position: center;
@@ -300,7 +300,7 @@ body {
   color: var(--text);
   font-size: 12px;
   font-family: 'IBM Plex Sans', sans-serif;
-  opacity: 0.5;
+  opacity: 1;
   display: block;
 }
 
@@ -934,4 +934,8 @@ ul {
   font-size: 12px;
   font-weight: 600;
   font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.badge-primary{
+  background-color: var(--accent);
 }

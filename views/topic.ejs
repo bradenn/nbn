@@ -12,7 +12,7 @@
             <img src="<%= topic.owner.picture %>" class="topic-image">
           </div>
           <div class="topic-element">
-            <span class="topic-title"><%= topic.title %></span>
+            <span class="topic-title"><%= topic.title %>&nbsp;<span class="badge badge-primary"><% var hh = topic.section; var ht = hh.charAt(0); var hy = ht.toUpperCase() + hh.substr(1); %> <%= hy %></span></span>
             <span class="topic-subtext">posted by <strong><a href="/u/<%= topic.owner.username %>" class="no-bs"><%= topic.owner.username %></a></strong></span>
           </div>
           <div class="topic-element float-right">

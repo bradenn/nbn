@@ -52,29 +52,29 @@
   <div class="container">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav navbar-nav mr-auto no-ul">
-        <li class="nav-item active ">
-          <a class="nav-link no-ul" href="/">U.S.</a>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "us"){ %>active<% } } %> ">
+          <a class="nav-link no-ul" href="/?sec=us">U.S.</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link no-ul" href="/">World</a>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "world"){ %>active<% } } %>">
+          <a class="nav-link no-ul" href="/?sec=world">World</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link no-ul" href="/">Politics</a>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "politics"){ %>active<% } } %>">
+          <a class="nav-link no-ul" href="/?sec=politics">Politics</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link no-ul" href="/">Business</a>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "business"){ %>active<% } } %>">
+          <a class="nav-link no-ul" href="/?sec=business">Business</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link no-ul" href="/">Tech</a>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "tech"){ %>active<% } } %>">
+          <a class="nav-link no-ul" href="/?sec=tech">Tech</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link no-ul" href="/">Health</a>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "health"){ %>active<% } } %>">
+          <a class="nav-link no-ul" href="/?sec=health">Health</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link no-ul" href="/">Entertainment</a>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "entertainment"){ %>active<% } } %>">
+          <a class="nav-link no-ul" href="/?sec=entertainment">Entertainment</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link no-ul" href="/">Opinion</a>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "opinion"){ %>active<% } } %>">
+          <a class="nav-link no-ul" href="/?sec=opinion">Opinion</a>
         </li>
       </ul>
       <ul class="nav navbar-nav mr-right">
