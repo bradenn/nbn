@@ -28,6 +28,7 @@
               <li><a href="#" class="list-inline-item disabled"><i class="fas fa-comment"></i>&nbsp;&nbsp;<%= comments.length %>&nbsp;Comments</a></li>
               <li><a href="#" class="list-inline-item"><i class="fas fa-share"></i>&nbsp; Share</a></li>
               <%
+              if(user != null){
               var k = false;
               user.saved.forEach(function(save){
                 if(save._id.toString() == topic._id.toString()){
@@ -39,7 +40,7 @@
               <li><a href="/topic/<%= topic._id %>/unsave" class="list-inline-item"><i class="fas fa-bookmark"></i>&nbsp; Unsave</a></li>
               <% }else{ %>
               <li><a href="/topic/<%= topic._id %>/save" class="list-inline-item"><i class="far fa-bookmark"></i>&nbsp; Save</a></li>
-              <% } %>
+              <% } } %>
 
             </ul>
           </div>
