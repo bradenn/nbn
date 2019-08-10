@@ -14,6 +14,7 @@
               <div class="title">
                 <%= topic.title %>
                 <span class="topic-inline-subtext">by <strong><%= topic.owner.username %></strong>, updated <strong><%= timeSince(new Date(topic.date)) %> </strong>ago. &nbsp;<span class="badge badge-primary"><% var hh = topic.section; var ht = hh.charAt(0); var hy = ht.toUpperCase() + hh.substr(1); %> <%= hy %></span></span>
+                <span class="topic-inline-subtext"><%= topic.views %> Views</span>
               </div>
             </div>
           </div>

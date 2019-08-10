@@ -18,6 +18,10 @@ let TopicSchema = new mongoose.Schema({
     default: 'us'
   },
   tags: [String],
+  views: {
+    type: Number,
+    default: "0"
+  },
   date: String
 });
 

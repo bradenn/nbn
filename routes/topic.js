@@ -6,14 +6,17 @@ let Comment = require('../models/comment');
 router.get('/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     Topic.findById(req.params.id, function(err, topic) {
+      topic.views = topic.views+=1;
       Comment.find({
         topic: topic._id
       }, function(err, comments) {
-        return res.render("topic", {
-          title: "Topic",
-          user: user,
-          topic: topic,
-          comments: comments
+        topic.save(function(){
+          return res.render("topic", {
+            title: "Topic",
+            user: user,
+            topic: topic,
+            comments: comments
+          });
         });
       });
     });

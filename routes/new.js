@@ -23,6 +23,7 @@ router.post('/topic', upload.single('image'), function(req, res, next) {
     body: req.body.body,
     picture: req.file.location,
     section: req.body.section,
+    views: 0,
     date: new Date()
   }
 
