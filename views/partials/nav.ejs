@@ -21,6 +21,16 @@
       <ul class="nav navbar-nav mr-right">
 
         <% if(user != null){ %>
+          <% if(user.account == "admin" || user.account == "superadmin") { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin"><i class="material-icons link-elem">bolt</i><span class="link-elem link-text">Admin</span></a>
+          </li>
+          <% } %>
+          <% if(user.account == "writer" || user.account == "admin" || user.account == "superadmin") { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/new"><i class="material-icons link-elem">add</i><span class="link-elem link-text">New Article</span></a>
+          </li>
+          <% } %>
         <li class="nav-item dropdown ">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img src="<%= user.picture %>" class="link-elem nav-image-link" /><span class="link-elem link-text"><%= user.username %></span>
@@ -75,6 +85,9 @@
         </li>
         <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "opinion"){ %>active<% } } %>">
           <a class="nav-link no-ul" href="/?sec=opinion">Opinion</a>
+        </li>
+        <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "history"){ %>active<% } } %>">
+          <a class="nav-link no-ul" href="/?sec=opinion">History</a>
         </li>
       </ul>
       <ul class="nav navbar-nav mr-right">

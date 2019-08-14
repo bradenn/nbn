@@ -23,6 +23,7 @@
     <div class="row">
       <div class="col-md-2">
         <% var c = false;
+        if(user != null){
         user.following.forEach(function(tar){
         if(tar._id.toString() == target._id.toString()){
         c = true;
@@ -34,7 +35,7 @@
         <a href="/messages/?to=<%= target._id %>" class="btn btn-primary">Message</a>
         <%}else{%>
         <a href="/u/<%= target._id %>/follow" class="btn btn-primary">Follow</a>
-        <% } %>
+        <% } } %>
 
       </div>
       <div class="col-md-8">

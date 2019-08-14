@@ -43,17 +43,22 @@
 
                 </div>
               </div><br>
-              <div class="form-group">
-                <label class="form-nomargin">Thumbnail</label>
-                <div class="input-group">
-
+              <label class="form-nomargin">Thumbnail</label>
+              <div class="form-row">
+                <div class="col-md-5">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" id="image" name="image">
                     <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
                   </div>
-
                 </div>
-              </div><br>
+                <div class="col-md-2" style="text-align:center;">
+                  or
+                </div>
+                <div class="col-md-5">
+                  <input type="text" class="form-control" name="link" placeholder="Link to image">
+                </div>
+              </div>
+              <br>
 
               <button type="submit" class="btn btn-primary">Submit</button>
               <small class="text-warning"><% if(typeof error != 'undefined'){ if(error.type == "login"){ %> <%= error.message %> <% } } %></small>

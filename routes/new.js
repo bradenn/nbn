@@ -5,6 +5,8 @@ let Topic = require('../models/topic');
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     if (user == null) return res.redirect("/login");
+    if(user.account == "user") return res.redirect("/login");
+
     return res.render("new", {
       title: "New",
       user: user
@@ -17,11 +19,12 @@ const singleUpload = upload.single('image');
 
 router.post('/topic', upload.single('image'), function(req, res, next) {
 
+  var img = (typeof req.file == "undefined")?req.body.link:req.file.location;
   var topicData = {
     title: req.body.title,
     owner: req.session.userId,
     body: req.body.body,
-    picture: req.file.location,
+    picture: img,
     section: req.body.section,
     views: 0,
     date: new Date()
