@@ -43,32 +43,31 @@ html[data-theme='light'] {
   margin: 10px 15px;
 }
 
-.topic-image-full{
+.topic-image-full {
   height: 200px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 8px;
   margin-top: 8px;
-  margin-left: 60px;
 }
 
 .article {
   border-radius: 8px;
   /* /border: 1px solid var(--secondary); */
-  margin:10px 15px;
+  margin: 10px 15px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   height: 200px;
-  width:100%;
+  width: 100%;
   overflow-x: auto;
   word-wrap: normal;
   padding: 10px 15px;
   vertical-align: bottom;
 }
 
-.article .title{
+.article .title {
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 32px !important;
   font-weight: 600;
@@ -323,36 +322,38 @@ body {
   background-color: var(--secondary);
 }
 
+
 .topic-title {
   color: var(--text);
-  font-size: 16px;
-  font-weight: 600;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 35px;
+
+  font-weight: 300;
+  font-family: 'IBM Plex Serif', serif;
 }
 
 .topic-subtext {
   color: var(--text);
-  font-size: 12px;
+  font-size: 14px;
   font-family: 'IBM Plex Sans', sans-serif;
-  opacity: 0.5;
+  opacity: 0.77;
   display: block;
 }
 
 .topic {
   margin-bottom: 16px;
   padding: 16px;
-  background: var(--secondary);
-  border-radius: 12px;
+
 }
 
 .topic:hover {}
 
 .topic-preview-text {
-  margin-left: 60px;
   color: var(--text);
-  font-size: 13px;
-  font-family: 'IBM Plex Sans', sans-serif;
-  opacity: 0.5;
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  font-family: 'IBM Plex Serif', serif;
+  font-weight: 400;
+  opacity: 1;
   display: block;
 }
 
@@ -377,7 +378,6 @@ body {
 }
 
 .topic-inline-preview {
-  margin-left: 60px;
   color: var(--text);
   font-size: 13px;
   font-family: 'IBM Plex Sans', sans-serif;
@@ -388,7 +388,6 @@ body {
 }
 
 .topic-inline-preview-textd {
-  margin-left: 60px;
   color: var(--text);
   font-size: 13px;
   font-family: 'IBM Plex Sans', sans-serif;
@@ -658,7 +657,7 @@ ul {
 }
 
 .topic-comments {
-  margin-left: 60px;
+
 }
 
 .topic-comments h5 {
@@ -753,7 +752,6 @@ ul {
   height: 100%;
   font-size: 16px;
   font-weight: 600;
-
   border-bottom: 2px solid rbga(0, 0, 0, 0);
   font-family: 'IBM Plex Sans', sans-serif;
 }
@@ -768,7 +766,7 @@ ul {
 }
 
 .topic-options {
-  margin-left: 60px;
+
 }
 
 .list-inline-item {
@@ -938,6 +936,6 @@ ul {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-.badge-primary{
+.badge-primary {
   background-color: var(--accent);
 }

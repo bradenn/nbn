@@ -39,7 +39,10 @@ router.get('/edit/:id', function(req, res, next) {
 router.post('/edit/:id/update', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     Topic.findById(req.params.id, function(err, topic) {
-      if (topic.owner._id.toString() != user._id.toString()) res.redirect(req.get('referer'));
+      if(user.account == "user" || user.account == "writer"){
+        if (topic.owner._id.toString() != user._id.toString()) res.redirect(req.get('referer'));
+      }
+
       topic.body = req.body.body;
       topic.save(function(err) {
         res.redirect("/topic/"+req.params.id);
