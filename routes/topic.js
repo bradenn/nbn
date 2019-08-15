@@ -6,11 +6,11 @@ let Comment = require('../models/comment');
 router.get('/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     Topic.findById(req.params.id, function(err, topic) {
-      topic.views = topic.views+=1;
+      topic.views = topic.views += 1;
       Comment.find({
         topic: topic._id
       }, function(err, comments) {
-        topic.save(function(){
+        topic.save(function() {
           return res.render("topic", {
             title: "Topic",
             user: user,
@@ -22,6 +22,32 @@ router.get('/:id', function(req, res, next) {
     });
   });
 });
+
+router.get('/edit/:id', function(req, res, next) {
+  User.findById(req.session.userId, function(err, user) {
+    Topic.findById(req.params.id, function(err, topic) {
+      if (topic.owner._id.toString() != user._id.toString()) res.redirect(req.get('referer'));
+      return res.render("edit", {
+        title: "edit",
+        user: user,
+        topic: topic
+      });
+    });
+  });
+});
+
+router.post('/edit/:id/update', function(req, res, next) {
+  User.findById(req.session.userId, function(err, user) {
+    Topic.findById(req.params.id, function(err, topic) {
+      if (topic.owner._id.toString() != user._id.toString()) res.redirect(req.get('referer'));
+      topic.body = req.body.body;
+      topic.save(function(err) {
+        res.redirect("/topic/"+req.params.id);
+      });
+    });
+  });
+});
+
 
 router.post('/:id/comment', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
@@ -42,15 +68,15 @@ router.post('/:id/comment', function(req, res, next) {
 router.get('/:id/:opt', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     Topic.findById(req.params.id, function(err, topic) {
-      if(req.params.opt == "save"){
+      if (req.params.opt == "save") {
         user.saved.push(topic._id);
-        user.save(function(err){
+        user.save(function(err) {
           res.redirect(req.get('referer'));
         });
       }
-      if(req.params.opt == "unsave"){
+      if (req.params.opt == "unsave") {
         user.saved.pull(topic._id);
-        user.save(function(err){
+        user.save(function(err) {
           res.redirect(req.get('referer'));
         });
       }

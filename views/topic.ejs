@@ -41,8 +41,11 @@
               <li><a href="/topic/<%= topic._id %>/unsave" class="list-inline-item"><i class="fas fa-bookmark"></i>&nbsp; Unsave</a></li>
               <% }else{ %>
               <li><a href="/topic/<%= topic._id %>/save" class="list-inline-item"><i class="far fa-bookmark"></i>&nbsp; Save</a></li>
-              <% } } %>
-
+              <% } %>
+              <% if(topic.owner._id.toString() == user._id.toString()){ %>
+                <li><a href="/topic/edit/<%= topic._id %>" class="list-inline-item"><i class="far fa-edit"></i>&nbsp; Edit</a></li>
+              <% } %>
+              <% } %>
             </ul>
           </div>
           <div class="topic-comments">
