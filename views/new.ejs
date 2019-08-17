@@ -59,7 +59,11 @@
                 </div>
               </div>
               <br>
-
+              <label class="form-nomargin">Display</label>
+              <div class="form-group">
+                <input type="checkbox" class="form-check-input" id="nsfw" name="nsfw" style="margin-left:8px;">
+                <label class="form-check-label" for="exampleCheck1" style="margin-left:32px;">This article is nsfw</label>
+              </div>
               <button type="submit" class="btn btn-primary">Submit</button>
               <small class="text-warning"><% if(typeof error != 'undefined'){ if(error.type == "login"){ %> <%= error.message %> <% } } %></small>
             </form>

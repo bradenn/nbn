@@ -27,6 +27,7 @@ router.post('/topic', upload.single('image'), function(req, res, next) {
     picture: img,
     section: req.body.section,
     views: 0,
+    nsfw: (!req.body.nsfw)?false:true,
     date: new Date()
   }
 
