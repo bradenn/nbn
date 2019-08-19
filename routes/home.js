@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
         query: req.query.s,
         sec: req.query.sec
       });
-    });
+    }).sort({_id: -1});
   });
 });
 
