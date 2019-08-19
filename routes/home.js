@@ -16,13 +16,16 @@ router.get('/', function(req, res, next) {
       }
     };
     Topic.find(e, function(err, topics) {
-      return res.render("home", {
-        title: "Home",
-        user: user,
-        topics: topics,
-        query: req.query.s,
-        sec: req.query.sec
-      });
+      Topic.find({}, function(err, trending) {
+        return res.render("home", {
+          title: "Home",
+          user: user,
+          topics: topics,
+          trending: trending,
+          query: req.query.s,
+          sec: req.query.sec
+        });
+      }).sort({views: -1, _id: -1}).limit(4);
     }).sort({_id: -1});
   });
 });

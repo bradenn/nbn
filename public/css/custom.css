@@ -48,6 +48,10 @@ html[data-theme='light'] {
   margin: 10px 15px;
 }
 
+.container {
+  max-width: 1440px;
+}
+
 .topic-image-full {
   height: 200px;
   background-position: center;
@@ -75,8 +79,11 @@ html[data-theme='light'] {
 
 .article .title {
   font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 32px !important;
+  font-size: 24px !important;
   font-weight: 600;
+  background-color: var(--background);
+  padding: 4px;
+  border-radius: 4px;
   color: var(--text) !important;
 }
 
@@ -307,6 +314,11 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
   opacity: 1;
   display: block;
+
+}
+
+.article-preview{
+  font-size: 12px !important;
 }
 
 .no-bs {
@@ -416,8 +428,32 @@ body {
   vertical-align: middle;
 }
 
+.drawer-container span{
+  font-size: 11px;
+}
+.drawer-container h5{
+  font-size: 14px;
+  max-width: 100%;
+}
+
+.drawer-container{
+  display: inline-block;
+  max-height: 48px;
+  max-width: 52%;
+  margin-left:8px;
+  vertical-align: top;
+}
+
 .drawer-link {
   margin-left: 24px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.drawer-text{
+  max-height: 16px;
+  overflow-y: hidden;
+  display:inline-block;
 }
 
 .drawer-icon {
@@ -717,10 +753,43 @@ ul {
   display: inline-block;
 }
 
+.inline-article{
+  margin-bottom: 16px;
+}
+
+.inline-article .title{
+  font-size: 24px;
+  font-weight: 500;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.inline-article .image{
+  border-radius: 8px;
+  margin-right:8px;
+  height:128px;
+  width:226px;
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: top;
+}
+
 .comment-img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  vertical-align: middle;
+}
+
+.side-list-image {
+  width: 128px;
+  height: 72px;
+  border-radius: 4px;
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
   vertical-align: middle;
 }
 
@@ -738,14 +807,15 @@ ul {
 .card {
   background-color: var(--secondary) !important;
   color: var(--text);
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 8px;
 }
 
 .card-head {
-  text-align: center;
   border-bottom: 1px solid var(--grey);
   padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 16px;
 }
 
 .card-head-title {
