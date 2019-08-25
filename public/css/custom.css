@@ -458,6 +458,10 @@ body {
   word-wrap: break-word;
 }
 
+.topic-preview-text img{
+  width:100%;
+}
+
 .drawer-container h5{
   font-size: 14px;
   max-width: 100%;
