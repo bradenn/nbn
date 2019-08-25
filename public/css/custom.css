@@ -428,9 +428,36 @@ body {
   vertical-align: middle;
 }
 
+.block-article{
+  width:100%;
+  margin:8px;
+}
+
+.block-article .title{
+  font-size: 24px;
+  font-weight: 500;
+}
+
+
+.block-article .image{
+  border-radius: 8px;
+  height:128px;
+  width:226px;
+  background-position: center;
+  background-size: cover;
+}
+
 .drawer-container span{
   font-size: 11px;
 }
+
+.title h5{
+  max-width: 100%;
+  font-size: 20px;
+  margin-top: 8px;
+  word-wrap: break-word;
+}
+
 .drawer-container h5{
   font-size: 14px;
   max-width: 100%;
@@ -768,6 +795,7 @@ ul {
 .inline-article .image{
   border-radius: 8px;
   margin-right:8px;
+  margin-left:16px;
   height:128px;
   width:226px;
   background-position: center;

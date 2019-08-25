@@ -26,33 +26,39 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-7">
         <div class="card">
-          <% topics.forEach(function(topic){ %>
-          <a href="/topic/<%= topic._id %>" class="no-bs">
-            <div class="inline-article">
-              <div class="image" style="background-image: url(<%= topic.picture %>);">
+          <div class="card-head">
+            <span class="card-head-title">Recent Articles</span>
+          </div>
+          <div class="row">
+            <% topics.forEach(function(topic){ %>
+            <div class="col-md-4">
+              <a href="/topic/<%= topic._id %>" class="no-bs">
+                <div class="block-article">
+                  <div class="image" style="background-image: url(<%= topic.picture %>);">
+                  </div>
+                  <div class="title">
+                    <h5><%= topic.title %><% if(topic.nsfw){ %>
+                      <span class="badge badge-danger">
+                        NSFW
+                      </span>
+                      <% } %></h5>
+                    <span class="topic-inline-subtext">by <strong><%= topic.owner.username %></strong>,
+                      updated <strong><%= timeSince(new Date(topic.date)) %> </strong>
+                      ago. &nbsp;<span class="badge badge-primary">
+                        <% var hh = topic.section; var ht = hh.charAt(0); var hy = ht.toUpperCase() + hh.substr(1); %>
+                        <%= hy %></span> <p><%= topic.views %> Views</p>
 
-              </div>
-              <div class="title">
-                <h5><%= topic.title %><% if(topic.nsfw){ %>
-                <span class="badge badge-danger">
-                  NSFW
-                </span>
-                <% } %></h5>
-                <span class="topic-inline-subtext">by <strong><%= topic.owner.username %></strong>,
-                  updated <strong><%= timeSince(new Date(topic.date)) %> </strong>
-                  ago. &nbsp;<span class="badge badge-primary">
-                    <% var hh = topic.section; var ht = hh.charAt(0); var hy = ht.toUpperCase() + hh.substr(1); %>
-                    <%= hy %></span> <%= topic.views %> Views
+                    </span>
 
-                </span>
+                  </div>
 
-              </div>
-
+                </div>
+              </a>
             </div>
-          </a>
-          <% }); %>
+            <% }); %>
+          </div>
         </div>
       </div>
 
