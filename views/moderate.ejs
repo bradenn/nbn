@@ -29,7 +29,7 @@
                 <td class="td-img" style="background-image:url(<%= topic.picture %>);"></td>
                 <td><%= topic.title %></td>
                 <td><%= topic.views %></td>
-                <td class="text-success">Good</td>
+                <td class="text-<%= (topic.standing)<=0?'success':(topic.standing)>=2?'danger':'warning' %>"><%= (topic.standing)<=0?"Good":(topic.standing)>=2?"Poor":"Moderate" %></td>
                 <td>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

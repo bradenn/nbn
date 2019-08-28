@@ -23,6 +23,10 @@ let TopicSchema = new mongoose.Schema({
     type: Number,
     default: "0"
   },
+  standing: {
+    type: Number,
+    default: 0
+  },
   nsfw: {
     type: Boolean,
     default: false
