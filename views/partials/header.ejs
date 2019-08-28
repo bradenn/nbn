@@ -4,6 +4,50 @@
   <% }else{ %>
   <title><%= title %></title>
   <% } %>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "WebSite",
+      "name": "Name Brand News",
+      "url": "https://namebrandnews.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://namebrandnews.com/search/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+
+  <% if(typeof topic != "undefined"){ %>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://namebrandnews.com/topic/{topic}"
+      },
+      "headline": "<%= topic.title %>",
+      "description": "<%= topic.body %>",
+      "image": {
+        "@type": "ImageObject",
+        "url": "<%= topic.picture %>",
+        "width": ,
+        "height":
+      },
+      "author": {
+        "@type": "Person",
+        "name": "<%= topic.owner.username %>"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NameBrandNews"
+      },
+      "datePublished": "<%= topic.date %>"
+    }
+  </script>
+  <% } %>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="/css/bootstrap.css" crossorigin="anonymous">

@@ -280,6 +280,20 @@ body {
   padding: 8px;
 }
 
+.badge-msg{
+    margin: 4px;
+}
+
+.table-dark{
+  background-color: var(--secondary);
+}
+
+.td-img{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 .list-group-item {
   padding: 4px;
   font-size: 13px;
@@ -672,7 +686,7 @@ a.text-primary:focus, a.text-primary:active, a.text-primary:hover {
 }
 
 .text-white {
-  color: var(--text);
+  color: var(--text) !important;
 }
 
 .reply p {

@@ -14,15 +14,27 @@
           <div class="card-body">
             <form method="post" action="/new/topic" id="form" enctype="multipart/form-data">
               <div class="form-group">
+                <label class="form-nomargin">Title</label>
                 <input readonly onfocus="if (this.hasAttribute('readonly')) {
     this.removeAttribute('readonly');
     this.blur();    this.focus();  }" type="text" class="form-control" id="title" name="title" placeholder="Title">
               </div>
               <div class="form-group">
+                <label class="form-nomargin">Article</label>
                 <input type="text" name="body" id="body" hidden>
 
                 <div id="quillEditor">
                 </div>
+              </div>
+              <div class="form-group">
+                <label class="form-nomargin">Description</label>
+                <input type="text" class="form-control" name="desc" id="desc" placeholder="Description"></input>
+                <small class="text-muted">1024 characters max</small>
+              </div>
+              <div class="form-group">
+                <label class="form-nomargin">SEO Tags</label>
+                <input type="text" class="form-control" name="tags" id="tags" placeholder="Tags"></input>
+                <small class="text-muted">Seperate tags with spaces only</small>
               </div>
               <div class="form-group">
                 <label class="form-nomargin">Section</label>
