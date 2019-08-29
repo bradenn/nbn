@@ -27,7 +27,7 @@ router.get('/:id', function(req, res, next) {
 router.get('/edit/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     Topic.findById(req.params.id, function(err, topic) {
-      if (topic.owner._id.toString() != user._id.toString() && user.owner.account != "admin" && user.owner.account != "superadmin") res.redirect(req.get('referer'));
+      if (topic.owner._id.toString() != user._id.toString() && user.account != "admin" && user.account != "superadmin") res.redirect(req.get('referer'));
       return res.render("edit", {
         title: "edit",
         user: user,
