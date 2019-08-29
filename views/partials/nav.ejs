@@ -62,6 +62,9 @@
   <div class="container">
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav navbar-nav mr-auto no-ul">
+        <li class="nav-item <% if(typeof sec == 'undefined'){ %>active<% } %> ">
+          <a class="nav-link no-ul" href="/">All</a>
+        </li>
         <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "us"){ %>active<% } } %> ">
           <a class="nav-link no-ul" href="/?sec=us">U.S.</a>
         </li>
