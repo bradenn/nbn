@@ -10,7 +10,9 @@ let NotificationSchema = new mongoose.Schema({
     enum: ['message', 'interaction', 'error'],
     default: 'interaction'
   },
-  message: String
+  message: String,
+  redict: String,
+  date: String
 });
 
 

@@ -2,6 +2,7 @@ var router = require('express').Router();
 let User = require('../models/user');
 let Topic = require('../models/topic');
 let Comment = require('../models/comment');
+let Notifications = require('../models/notifications');
 
 router.get('/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
@@ -18,7 +19,7 @@ router.get('/:id', function(req, res, next) {
             comments: comments
           });
         });
-      });
+      }).sort({_id: -1});
     });
   });
 });
@@ -39,13 +40,13 @@ router.get('/edit/:id', function(req, res, next) {
 router.post('/edit/:id/update', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     Topic.findById(req.params.id, function(err, topic) {
-      if(user.account == "user" || user.account == "writer"){
+      if (user.account == "user" || user.account == "writer") {
         if (topic.owner._id.toString() != user._id.toString()) res.redirect(req.get('referer'));
       }
 
       topic.body = req.body.body;
       topic.save(function(err) {
-        res.redirect("/topic/"+req.params.id);
+        res.redirect("/topic/" + req.params.id);
       });
     });
   });
@@ -60,13 +61,30 @@ router.post('/:id/comment', function(req, res, next) {
       user: user._id,
       date: new Date()
     }
-    Comment.create(userData, function(error, user) {
-      if (error) {} else {
-        res.redirect(req.get('referer'));
-      }
+    Topic.findById(req.params.id, function(err, topic) {
+      Comment.create(userData, function(error, comment) {
+        var notificationData = {
+          title: "New Comment On Your Article",
+          type: "interaction",
+          message: user.username + " wrote '" + comment.text + "' on your article '" + topic.title + "'",
+          redict: "/topic/"+topic._id,
+          date: new Date()
+        }
+        Notifications.create(notificationData, function(error, notification) {
+          User.findById(topic.owner, function(err, owner) {
+            owner.notifications.push(notification);
+            owner.save(function(err){
+              res.redirect(req.get('referer'));
+            });
+          });
+        });
+      });
     });
   });
 });
+
+
+
 
 router.get('/:id/:opt', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {

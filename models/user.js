@@ -17,7 +17,8 @@ let UserSchema = new mongoose.Schema({
   },
   notifications: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Notification'
+    ref: 'Notification',
+    autopopulate: true
   }],
   following: [{
     type: mongoose.Schema.Types.ObjectId,
