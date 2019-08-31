@@ -16,10 +16,10 @@ router.get('/', function(req, res, next) {
       }
     };
     Topic.find({
-      published: false
+      published: true
     }, function(err, topics) {
       Topic.find({
-        published: false
+        published: true
       }, function(err, trending) {
         return res.render("home", {
           title: "Home",
