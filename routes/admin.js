@@ -8,16 +8,33 @@ router.get('/', function(req, res, next) {
       User.findOne({
         username: req.query.target
       }, function(err, target) {
-        var e = {};
-        Topic.find(e, function(err, topics) {
-          return res.render("admin", {
-            title: "Admin",
-            user: user,
-            users: users,
-            target: target,
-            topics: topics
-          });
-        }).sort({_id: -1});
+        return res.render("admin", {
+          title: "Admin",
+          user: user,
+          users: users,
+          target: target,
+          state: "users"
+        });
+      });
+    });
+  });
+});
+
+router.get('/articles', function(req, res, next) {
+  User.findById(req.session.userId, function(err, user) {
+    User.findOne({
+      username: req.query.target
+    }, function(err, target) {
+      var e = {};
+      Topic.find(e, function(err, topics) {
+        return res.render("articleadmin", {
+          title: "Admin : Articles",
+          user: user,
+          topics: topics,
+          state: "articles"
+        });
+      }).sort({
+        _id: -1
       });
     });
   });

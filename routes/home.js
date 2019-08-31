@@ -10,13 +10,17 @@ router.get('/', function(req, res, next) {
         $in: user.following
       }
     };
-    if(req.query.sec != null) e = {
+    if (req.query.sec != null) e = {
       'section': {
         $in: req.query.sec
       }
     };
-    Topic.find(e, function(err, topics) {
-      Topic.find({}, function(err, trending) {
+    Topic.find({
+      published: false
+    }, function(err, topics) {
+      Topic.find({
+        published: false
+      }, function(err, trending) {
         return res.render("home", {
           title: "Home",
           user: user,
@@ -25,8 +29,13 @@ router.get('/', function(req, res, next) {
           query: req.query.s,
           sec: req.query.sec
         });
-      }).sort({views: -1, _id: -1}).limit(4);
-    }).sort({_id: -1});
+      }).sort({
+        views: -1,
+        _id: -1
+      }).limit(4);
+    }).sort({
+      _id: -1
+    });
   });
 });
 
