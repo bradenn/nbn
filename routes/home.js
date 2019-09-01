@@ -4,20 +4,29 @@ let Topic = require('../models/topic');
 
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
-    var e = {};
+    var e = {'published': true};
     if (req.query.s == "following") e = {
-      'owner': {
-        $in: user.following
-      }
+      $and: [{
+        'owner': {
+          $in: user.following
+        }
+      }, {
+        'published': true
+      }]
     };
+
     if (req.query.sec != null) e = {
-      'section': {
-        $in: req.query.sec
-      }
+      $and: [{
+          'section': {
+            $in: req.query.sec
+          }
+        },
+        {
+          'published': true
+        }
+      ]
     };
-    Topic.find({
-      published: true
-    }, function(err, topics) {
+    Topic.find(e, function(err, topics) {
       Topic.find({
         published: true
       }, function(err, trending) {
