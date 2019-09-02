@@ -18,6 +18,10 @@
                 <div class="side-list-image" style="background-image:url(<%= topic.picture %>);"></div>
                 <div class="drawer-container">
                   <h5><%= topic.title %></h5>
+                  <span class="topic-inline-subtext">
+                    <%= topic.owner.username %>&nbsp;<i class="fas fa-check-circle"></i><br>
+                    <%= topic.views %> views • <%= timeSince(new Date(topic.date)) %> ago
+                  </span>
 
                 </div>
               </li>
@@ -39,17 +43,10 @@
                   <div class="image" style="background-image: url(<%= topic.picture %>);">
                   </div>
                   <div class="title">
-                    <h5><%= topic.title %><% if(topic.nsfw){ %>
-                      <span class="badge badge-danger">
-                        NSFW
-                      </span>
-                      <% } %></h5>
-                    <span class="topic-inline-subtext">by <strong><%= topic.owner.username %></strong>,
-                      updated <strong><%= timeSince(new Date(topic.date)) %> </strong>
-                      ago. &nbsp;<span class="badge badge-primary">
-                        <% var hh = topic.section; var ht = hh.charAt(0); var hy = ht.toUpperCase() + hh.substr(1); %>
-                        <%= hy %></span> <p><%= topic.views %> Views</p>
-
+                    <h5><%= topic.title %></h5>
+                    <span class="topic-inline-subtext">
+                      <%= topic.owner.username %>&nbsp;<i class="fas fa-check-circle"></i><br>
+                      <%= topic.views %> views • <%= timeSince(new Date(topic.date)) %> ago
                     </span>
 
                   </div>

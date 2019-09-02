@@ -40,6 +40,7 @@ html[data-theme='light'] {
 .navbar-brand {
   font-family: 'Teko', sans-serif;
   font-size: 32px;
+  margin-left: 8px;
   line-height: 40px;
   color: var(--text) !important;
 }
@@ -328,9 +329,11 @@ body {
 
 .topic-inline-subtext {
   color: var(--text);
-  font-size: 12px;
+  font-size: 13px;
+  margin-top: -2px;
   font-family: 'IBM Plex Sans', sans-serif;
-  opacity: 1;
+  font-weight: 300;
+  opacity: 0.77;
   display: block;
 
 }
@@ -458,7 +461,7 @@ body {
 
 
 .block-article .image{
-  border-radius: 8px;
+  border-radius: 20;
   height:128px;
   width:226px;
   background-position: center;
@@ -471,7 +474,7 @@ body {
 
 .title h5{
   max-width: 100%;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 8px;
   word-wrap: break-word;
 }
@@ -483,6 +486,9 @@ body {
 .drawer-container h5{
   font-size: 14px;
   max-width: 100%;
+  max-height:34px;
+  text-overflow: clip;
+  overflow-y: hidden;
 }
 
 .drawer-container{
@@ -836,7 +842,7 @@ ul {
 .side-list-image {
   width: 128px;
   height: 72px;
-  border-radius: 4px;
+  border-radius: 2px;
   background-position: center;
   background-size: cover;
   display: inline-block;
@@ -962,6 +968,7 @@ ul {
   color: var(--text) !important;
 }
 
+
 .btn-primary:active {
   background-color: var(--accent) !important;
   color: var(--text) !important;
@@ -978,7 +985,7 @@ ul {
 
 .navbar-dark .navbar-nav .nav-link:hover {
   color: var(--accent);
-  border-bottom: 1px solid var(--accent);
+  /* border-bottom: 1px solid var(--accent); */
   height: 100%;
   font-size: 13px;
   font-weight: 600;
