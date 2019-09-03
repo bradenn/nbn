@@ -19,7 +19,7 @@
                 <div class="drawer-container">
                   <h5><%= topic.title %></h5>
                   <span class="topic-inline-subtext">
-                    <%= topic.owner.username %>&nbsp;<i class="fas fa-check-circle"></i><br>
+                    <%= topic.owner.username %><% if(topic.owner.account == "admin"){ %>&nbsp;<i class="fas fa-check-circle"></i> <% } %><br>
                     <%= topic.views %> views • <%= timeSince(new Date(topic.date)) %> ago
                   </span>
 
