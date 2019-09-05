@@ -469,7 +469,7 @@ body {
 .block-article .image{
   border-radius: 20;
   height:128px;
-  width:226px;
+  /* width:226px; */
   background-position: center;
   background-size: cover;
 }
