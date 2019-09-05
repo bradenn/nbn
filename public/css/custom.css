@@ -22,6 +22,11 @@ html[data-theme='light'] {
   background-color: white !important;
 }
 
+.header-secondary{
+  //  opacity: 0.7;
+    color: var(--accent);
+}
+
 .ql-editor {
   background-color: white !important;
   color: #000;
@@ -38,8 +43,9 @@ html[data-theme='light'] {
 }
 
 .navbar-brand {
-  font-family: 'Teko', sans-serif;
-  font-size: 32px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
   margin-left: 8px;
   line-height: 40px;
   color: var(--text) !important;
