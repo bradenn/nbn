@@ -36,6 +36,7 @@
                   <td><%= usr.account %></td>
                   <td><%= usr.email %></td>
                   <td>
+                    <% if(usr.account != "superadmin"){ %>
                     <form action="/admin/account/<%= usr._id %>" method="post" style="margin-right:8px;">
                       <div class="form-row">
                         <div class="col-8">
@@ -52,6 +53,9 @@
                         </div>
                       </div>
                     </form>
+                    <% }else{ %>
+                      <span class="text-danger">Cannot be changed</span>
+                    <% } %>
                   </td>
                 </tr>
                 <% }); %>
