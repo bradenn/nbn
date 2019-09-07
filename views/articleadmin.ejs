@@ -48,7 +48,9 @@
                         <a class="dropdown-item" href="/topic/edit/<%= topic._id %>"><i class="fas fa-edit link-elem"></i><span class="link-elem link-text">Edit</span></a>
                         <h6 class="dropdown-header">Negative Actions</h6>
                         <a class="dropdown-item text-warning" href="/moderate/flag/<%= topic._id %>"><i class="fas fa-flag link-elem"></i><span class="link-elem link-text">Flag (<%= topic.standing %>)</span></a>
+                        <% if(user.account == "superadmin"){ %>
                         <a class="dropdown-item text-danger" href="/moderate/delete/<%= topic._id %>"><i class="fas fa-trash link-elem"></i><span class="link-elem link-text">Delete</span></a>
+                        <% } %>
                       </div>
                     </div>
                   </td>
