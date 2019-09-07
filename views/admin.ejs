@@ -33,7 +33,7 @@
                   <td class="td-img" style="background-image:url(<%= usr.picture %>);"></td>
                   <td><%= usr.firstname %> <%= usr.lastname %></td>
                   <td><%= usr.username %></td>
-                  <td><%= usr.account %></td>
+                  <td class="<%= (usr.account == 'admin')?'text-warning':(usr.account == 'superadmin')?'text-danger':'' %>"><%= usr.account %></td>
                   <td><%= usr.email %></td>
                   <td>
                     <% if(usr.account != "superadmin"){ %>
