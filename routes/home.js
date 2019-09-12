@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
         published: true
       }, function(err, trending) {
         return res.render("home", {
-          title: "Home",
+          title: "Name Brand News : Home",
           user: user,
           topics: topics,
           trending: trending,
