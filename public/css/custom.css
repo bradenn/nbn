@@ -320,6 +320,11 @@ body {
   color: rgba(0, 0, 0, 0.88);
 }
 
+hr{
+  border-color: var(--text);
+  opacity: 0.2;
+}
+
 .list-inline-item a {
   color: inherit;
   opacity: 0.75;
@@ -328,6 +333,7 @@ body {
 
 .topic-inline-title {
   color: var(--text);
+
   font-size: 16px;
   font-weight: 600;
   font-family: 'IBM Plex Sans', sans-serif;
@@ -344,6 +350,15 @@ body {
 
 }
 
+.text-title{
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+h5{
+  color: var(--text);
+}
 .article-preview{
   font-size: 12px !important;
 }

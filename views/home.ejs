@@ -6,12 +6,29 @@
   <%- include("partials/nav.ejs"); %>
   <div class="container" style="margin-top:32px;">
     <div class="row">
-      <div class="col-md-3">
-        <div class="card">
+      <div class="col-lg-3">
+        <h5 class="text-title">Trending</h5>
+        <% trending.forEach(function(topic){ %>
+        <div class="media">
+          <div class="mr-3" style="background-image:url(<%= topic.picture %>); background-position: center; background-size: cover; background-repeat: no-repeat; height: 64px; width:64px;" alt="Generic placeholder image"></div>
+          <div class="media-body">
+            <h5 class="topic-inline-title"><a href="/topic/<%= topic._id %>" class="no-bs"><%= topic.title %></a></h5>
+            <span class="topic-inline-subtext">
+              <%= topic.owner.username %><% if(topic.owner.account == "admin" || topic.owner.account == "superadmin"){ %>&nbsp;<i class="fas fa-shield-alt"></i> <% } %><br>
+              <%= topic.views %> views • <%= timeSince(new Date(topic.date)) %> ago
+            </span>
+
+          </div>
+        </div>
+        <hr>
+        <% }); %>
+
+
+        <!--<div class="card">
           <div class="card-head">
             <span class="card-head-title">Trending Articles</span>
           </div>
-          <ul class="list-group">
+            <ul class="list-group">
             <% trending.forEach(function(topic){ %>
             <a href="/topic/<%= topic._id %>" class="no-bs">
               <li class="list-group-item">
@@ -22,19 +39,15 @@
                     <%= topic.owner.username %><% if(topic.owner.account == "admin" || topic.owner.account == "superadmin"){ %>&nbsp;<i class="fas fa-shield-alt"></i> <% } %><br>
                     <%= topic.views %> views • <%= timeSince(new Date(topic.date)) %> ago
                   </span>
-
+                  <% }); %>
                 </div>
               </li>
             </a>
-            <% }); %>
-          </ul>
-        </div>
+
+          </ul> </div>-->
       </div>
       <div class="col-md-7">
-        <div class="card">
-          <div class="card-head">
-            <span class="card-head-title">Recent Articles</span>
-          </div>
+        <h5 class="text-title">Recent</h5>
           <div class="row" style="padding-right:16px;">
             <% topics.forEach(function(topic){ %>
             <div class="col-md-4">
@@ -45,7 +58,7 @@
                   <div class="title">
                     <h5><%= topic.title %></h5>
                     <span class="topic-inline-subtext">
-                        <%= topic.owner.username %><% if(topic.owner.account == "admin" || topic.owner.account == "superadmin"){ %>&nbsp;<i class="fas fa-shield-alt"></i> <% } %><br>
+                      <%= topic.owner.username %><% if(topic.owner.account == "admin" || topic.owner.account == "superadmin"){ %>&nbsp;<i class="fas fa-shield-alt"></i> <% } %><br>
                       <%= topic.views %> views • <%= timeSince(new Date(topic.date)) %> ago
                     </span>
 
@@ -56,7 +69,7 @@
             </div>
             <% }); %>
           </div>
-        </div>
+
       </div>
 
 
