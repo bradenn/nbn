@@ -4,7 +4,9 @@ let Topic = require('../models/topic');
 
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
-    var e = {'published': true};
+    var e = {
+      'published': true
+    };
     if (req.query.s == "following") e = {
       $and: [{
         'owner': {
@@ -30,21 +32,29 @@ router.get('/', function(req, res, next) {
       Topic.find({
         published: true
       }, function(err, trending) {
-        return res.render("home", {
-          title: "Name Brand News : Home",
-          user: user,
-          topics: topics,
-          trending: trending,
-          query: req.query.s,
-          sec: req.query.sec
-        });
+        Topic.find({
+          
+        }, function(err, following) {
+          return res.render("home", {
+            title: "Name Brand News : Home",
+            user: user,
+            topics: topics,
+            trending: trending,
+            following: following,
+            query: req.query.s,
+            sec: req.query.sec
+          });
+        }).sort({
+          views: -1,
+          _id: -1
+        }).limit(4);
       }).sort({
         views: -1,
         _id: -1
       }).limit(4);
     }).sort({
       _id: -1
-    });
+    }).limit(8);
   });
 });
 

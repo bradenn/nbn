@@ -25,6 +25,7 @@
                   <th scope="col">Rank</th>
                   <th scope="col">Email</th>
                   <th scope="col">Change Rank</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,6 +57,21 @@
                     <% }else{ %>
                       <span class="text-danger">Cannot be changed</span>
                     <% } %>
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actions
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-left" aria-labelledby="">
+                        <h6 class="dropdown-header">User Settings</h6>
+                        <a class="dropdown-item" href="/u/quarentine/<%= usr._id %>"><i class="fas fa-edit link-elem"></i><span class="link-elem link-text">Edit</span></a>
+                        <h6 class="dropdown-header">Negative Actions</h6>
+                        <a class="dropdown-item" href="/u/quarentine/<%= usr._id %>"><i class="fas fa-gavel link-elem"></i><span class="link-elem link-text">Ban</span></a>
+                        <a class="dropdown-item" href="/u/quarentine/<%= usr._id %>"><i class="fas fa-biohazard link-elem"></i><span class="link-elem link-text">Quarentine</span></a>
+                        <a class="dropdown-item text-<%= (usr.account == 'superadmin')?'muted':'danger' %> <%= (usr.account == 'superadmin')?'disabled':'' %>" href="<%= (usr.account == 'superadmin')?'#':'/u/delete/'+usr._id %>"><i class="fas fa-trash link-elem"></i><span class="link-elem link-text">Delete</span></a>
+                      </div>
+                    </div>
                   </td>
                 </tr>
                 <% }); %>

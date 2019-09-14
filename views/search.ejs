@@ -48,7 +48,7 @@
               <img src="<%= topic.owner.picture %>" class="topic-inline-image">
             </div>
             <div class="topic-inline-element">
-              <span class="topic-inline-title"><%= topic.title %></span>
+              <span class="topic-inline-title"><%- topic.title.replace(query, "<span class='text-danger'>" + query + "</span>") %></span>
               <span class="topic-inline-subtext">Last updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
             </div>
             <div class="topic-inline-preview">

@@ -350,6 +350,18 @@ hr{
 
 }
 
+.media{
+  margin-left:16px;
+}
+
+.article-inline-lg .article-img{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width:250px;
+  height:128px;
+}
+
 .text-title{
   color: var(--text);
   font-family: 'IBM Plex Sans', sans-serif;

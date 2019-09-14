@@ -4,7 +4,6 @@ let Topic = require('../models/topic');
 
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
-    if (user != null) {
       Topic.find({
           $or: [{
             "title": {
@@ -37,9 +36,6 @@ router.get('/', function(req, res, next) {
 
         });
 
-    } else {
-      return res.redirect("/login");
-    }
   });
 });
 
