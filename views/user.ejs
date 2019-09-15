@@ -5,85 +5,54 @@
 <body>
   <%- include("partials/nav.ejs"); %>
   <div class="container" style="margin-top:32px;">
-    <div class="row" style=" margin-bottom:16px;">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="user-card">
-            <div class="cont">
-              <img src="<%= target.picture %>" class="user-img">
-            </div>
-            <div class="cont">
-              <span class="title"><%= target.firstname %> <%= target.lastname %></span>
-              <span class="sub-title">Following: <b><%= target.following.length %></b> Followers: <b><%= followers.length %></b></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-2">
-        <% var c = false;
-        if(user != null){
-        user.following.forEach(function(tar){
-        if(tar._id.toString() == target._id.toString()){
-        c = true;
-        }
-      });
-      %>
-        <% if(c){ %>
-        <a href="/u/<%= target._id %>/unfollow" class="btn btn-secondary">Unfollow</a>
-        <a href="/messages/?to=<%= target._id %>" class="btn btn-primary">Message</a>
-        <%}else{%>
-        <a href="/u/<%= target._id %>/follow" class="btn btn-primary">Follow</a>
-        <% } } %>
 
       </div>
       <div class="col-md-8">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-topics" role="tab" aria-controls="pills-home" aria-selected="true">Topics</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-comments" role="tab" aria-controls="pills-profile" aria-selected="false">Comments</a>
-          </li>
-        </ul>
-        <div class="tab-content" id="pills-tabContent">
-          <div class="tab-pane fade show active" id="pills-topics" role="tabpanel" aria-labelledby="pills-home-tab"><% topics.forEach(function(topic){ %>
-            <a href="/topic/<%= topic._id %>" class="no-bs">
-              <div class="topic-inline">
-                <div class="topic-inline-element margin-right">
-                  <img src="<%= topic.owner.picture %>" class="topic-inline-image">
-                </div>
-                <div class="topic-inline-element">
-                  <span class="topic-inline-title"><%= topic.title %></span>
-                  <span class="topic-inline-subtext">Last updated <strong><%= timeSince(new Date(topic.date)) %> ago</strong></span>
-                </div>
-                <div class="topic-inline-preview">
-                  <span class="topic-inline-preview-text"><%- topic.body %></span>
-                </div>
-              </div>
-            </a>
-            <% }); %></div>
-          <div class="tab-pane fade" id="pills-comments" role="tabpanel" aria-labelledby="pills-profile-tab">
-            <ul>
-              <% comments.forEach(function(comment){ %>
-              <li class="comment">
-                <div class="comment-inline">
-                  <span class="title"><a href="/u/<%= comment.user.username %>" class="no-bs"><%= comment.user.username %></a></span>
-                </div>
-                <span class="sub-title">posted <strong><%= timeSince(new Date(comment.date)) %></strong> ago</span>
-                <p><%= comment.text %></p>
-              </li>
-              <% }); %>
-              <% if(comments.length <= 0){ %>
-              <li class="comment">
-                <span class="title">No comments</span>
-              </li>
-              <% } %>
-            </ul>
-          </div>
-        </div>
 
+        <h4 class="text-title"><%= target.firstname %> <%= target.lastname %></h4>
+        <hr>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+
+      </div>
+      <div class="col-md-8">
+        <div class="card" style="padding-left: 0; padding-right: 0;">
+          <div class="card-head">
+            <span class="card-head-title">Articles</span>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="table table-dark" style="width:100%;">
+              <thead>
+                <tr>
+                  <th scope="col">Cover</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Views</th>
+                  <th scope="col">Published</th>
+                  <th scope="col">Standing</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% topics.forEach(function(topic){ %>
+                <tr>
+                  <td class="td-img" style="background-image:url(<%= topic.picture %>);"></td>
+                  <td><a href="/topic/<%= topic._id %>" class="no-bs"><%= topic.title %></a></td>
+                  <td><%= topic.views %></td>
+                  <td class="text-<%= (topic.published)?'success':'warning' %>"><%= topic.published %></td>
+                  <td class="text-<%= (topic.standing)<=0?'success':(topic.standing)>=2?'danger':'warning' %>"><%= (topic.standing)<=0?"Good":(topic.standing)>=2?"Poor":"Moderate" %></td>
+
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

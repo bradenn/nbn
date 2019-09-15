@@ -51,9 +51,7 @@ UserSchema.plugin(autopopulate);
 
 // Handle Authentication by verifying password hash
 UserSchema.statics.authenticate = function(username, password, callback) {
-  User.findOne({
-      username: username
-    })
+  User.findOne({ "username" : { $regex : new RegExp(username, "i") } })
     .exec(function(err, user) {
       if (err) {
         return callback(err)

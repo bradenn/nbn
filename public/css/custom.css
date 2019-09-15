@@ -18,6 +18,12 @@ html[data-theme='light'] {
   --primary: rgba(0, 122, 255, 1);
 }
 
+.alert-warning{
+  border-color: var(--accent) !important;
+  color: var(--text);
+  background-color: var(--accent-dim) !important
+}
+
 .ql-toolbar {
   background-color: white !important;
 }
