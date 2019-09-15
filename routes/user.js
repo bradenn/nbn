@@ -1,4 +1,5 @@
 var router = require('express').Router();
+let faker = require("faker");
 let User = require('../models/user');
 let Topic = require('../models/topic');
 let Comment = require('../models/comment');
@@ -18,8 +19,10 @@ router.get('/:id', function(req, res, next) {
           user: target._id
         }, function(err, comments) {
           User.find({
-            "following.id": { "$in": [target._id] }
-            }, function(err, followers) {
+            "following.id": {
+              "$in": [target._id]
+            }
+          }, function(err, followers) {
             return res.render("user", {
               title: "User",
               user: user,
@@ -33,6 +36,30 @@ router.get('/:id', function(req, res, next) {
         });
       });
 
+    });
+  });
+});
+
+router.get('/:action/:id', function(req, res, next) {
+  User.findById(req.session.userId, function(err, user) {
+    User.findById(req.params.id, function(err, target) {
+      if (user.account == "superadmin") {
+        switch (req.params.action) {
+          case 'ban':
+            target.account = 'banned';
+            target.save(function(err){
+
+            });
+            break;
+          case 'unban':
+            target.account = 'user';
+            target.save(function(err){
+
+            });
+            break;
+        }
+        res.redirect(req.get('referer'));
+      }
     });
   });
 });

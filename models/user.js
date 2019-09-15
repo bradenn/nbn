@@ -40,7 +40,7 @@ let UserSchema = new mongoose.Schema({
   },
   account: {
     type: String,
-    enum: ['user', 'writer', 'admin', 'superadmin'],
+    enum: ['banned', 'user', 'writer', 'admin', 'superadmin'],
     default: 'user'
   },
   date: String

@@ -85,8 +85,13 @@ router.post('/', function(req, res, next) {
             }
           });
       } else {
-        req.session.userId = user._id;
-        return res.redirect('/');
+        if (user.account == 'banned') {
+          return res.redirect('/banned');
+        } else {
+          req.session.userId = user._id;
+          return res.redirect('/');
+        }
+
       }
     });
   } else {
@@ -106,6 +111,34 @@ router.post('/', function(req, res, next) {
         }
       });
   }
+});
+
+router.get('/faker', function(req, res, next) {
+  var userData = {
+    email: faker.internet.email(),
+    username: faker.internet.userName(),
+    firstname: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+    password: faker.internet.password(),
+    picture: "https://bn-media-aws.s3.us-west-2.amazonaws.com/1564603161391",
+    account: "user",
+    date: new Date()
+  }
+  User.create(userData, function(error, user) {
+    if (error) {
+      return res.render("login", {
+        title: "Login",
+        user: user,
+        error: {
+          type: "register",
+          message: "This username or email is taken."
+        }
+      });
+    } else {
+      req.session.userId = user._id;
+      return res.send('wow');
+    }
+  });
 });
 
 module.exports = router;
