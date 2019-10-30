@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
         published: true
       }, function(err, trending) {
         Topic.find({
-          
+
         }, function(err, following) {
           return res.render("home", {
             title: "Name Brand News : Home",

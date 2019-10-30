@@ -17,7 +17,7 @@
             <span class="card-head-title">Current Articles</span>
           </div>
           <div style="overflow-x:auto;">
-            <table class="table table-dark" style="width:100%;">
+            <table class="table table-light" style="width:100%;">
               <thead>
                 <tr>
                   <th scope="col">Cover</th>
@@ -38,7 +38,7 @@
                   <td class="text-<%= (topic.standing)<=0?'success':(topic.standing)>=2?'danger':'warning' %>"><%= (topic.standing)<=0?"Good":(topic.standing)>=2?"Poor":"Moderate" %></td>
                   <td>
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Actions
                       </button>
                       <div class="dropdown-menu dropdown-menu-left" aria-labelledby="">

@@ -8,51 +8,31 @@
     <div class="row">
 
 
-      <div class="col-md-9">
 
-        <h5 class="text-title">This Week</h5>
-        <hr>
-        <div class="row" style="padding-right:16px;">
-          <% topics.forEach(function(topic){ %>
-          <div class="col-md-3">
-            <a href="/topic/<%= topic._id %>" class="no-bs">
-              <div class="block-article">
-                <div class="image" style="background-image: url(<%= topic.picture %>);">
+            <% topics.forEach((topic) => { %>
+              <div class="col-md-4">
+                <a href="/topic/<%= topic._id %>" class="no-bs">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <div src="" class="card-img-fill" style="background-image: url(<%= topic.picture %>);"></div>
                 </div>
-                <div class="title">
-                  <h5><%= topic.title %></h5>
-                  <span class="topic-inline-subtext">
-                    <%= topic.owner.username %><% if(topic.owner.account == "admin" || topic.owner.account == "superadmin"){ %>&nbsp;<i class="fas fa-shield-alt"></i> <% } %><br>
-                    <%= topic.views %> views &bullet; <%= timeSince(new Date(topic.date)) %> ago
-                  </span>
-
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= topic.title %></h5>
+                    <p class="card-text"><%= topic.desc %></p>
+                    <p class="card-text"><small class="text-muted">Last updated <%= timeSince(new Date(topic.date)) %> ago</small></p>
+                  </div>
                 </div>
-
               </div>
-            </a>
-          </div>
-          <% }); %>
-        </div>
+            </div>
+          </a>
+            </div>
+            <% }); %>
 
-      </div>
 
       <div class="col-md-3">
-        <h5 class="text-title">Trending</h5>
-        <hr>
-        <% trending.forEach(function(topic){ %>
-        <div class="media">
-          <div class="mr-3" style="background-image:url(<%= topic.picture %>); background-position: center; background-size: cover; background-repeat: no-repeat; height: 64px; width:64px;" alt="Generic placeholder image"></div>
-          <div class="media-body">
-            <h5 class="topic-inline-title"><a href="/topic/<%= topic._id %>" class="no-bs"><%= topic.title %></a></h5>
-            <span class="topic-inline-subtext">
-              <a href="/u/<%= topic.owner.username %>" class="no-bs"><%= topic.owner.username %></a><% if(topic.owner.account == "admin" || topic.owner.account == "superadmin"){ %>&nbsp;<i class="fas fa-shield-alt"></i> <% } %><br>
-              <%= topic.views %> views &bullet; <%= timeSince(new Date(topic.date)) %> ago
-            </span>
 
-          </div>
-        </div>
-        <hr>
-        <% }); %>
       </div>
 
     </div>

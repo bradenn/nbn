@@ -13,7 +13,13 @@ router.get('/:id', function(req, res, next) {
       }
     }, function(err, target) {
       Topic.find({
-        owner: target._id
+        $and: [{
+          'owner': {
+            $in: target._id
+          }
+        }, {
+          'published': true
+        }]
       }, function(err, topics) {
         Comment.find({
           user: target._id
@@ -47,13 +53,13 @@ router.get('/:action/:id', function(req, res, next) {
         switch (req.params.action) {
           case 'ban':
             target.account = 'banned';
-            target.save(function(err){
+            target.save(function(err) {
 
             });
             break;
           case 'unban':
             target.account = 'user';
-            target.save(function(err){
+            target.save(function(err) {
 
             });
             break;
