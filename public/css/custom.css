@@ -610,7 +610,7 @@ h5{
 }
 
 .btn-primary {
-  color: var(--text);
+  color: #fff !important;
   font-size: 13px;
   font-weight: 600;
   font-family: 'IBM Plex Sans', sans-serif;
@@ -625,7 +625,7 @@ h5{
 
 .btn-outline-light:not(:disabled):not(.disabled).active, .btn-outline-light:not(:disabled):not(.disabled):active, .show>.btn-outline-light.dropdown-toggle {
   background-color: inherit;
-  color: var(--text);
+  color: #fff;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
@@ -639,7 +639,7 @@ h5{
 }
 
 .btn-primary:focus {
-  color: var(--text);
+  color: #fff;
   font-size: 13px;
   font-weight: 600;
   font-family: 'IBM Plex Sans', sans-serif;
