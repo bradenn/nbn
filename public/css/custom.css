@@ -26,6 +26,38 @@ html[data-theme='light'] {
   background-size:contain;
 }
 
+.video-container{
+  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, .08), 0 1px 3px 1px rgba(60, 64, 67, .3);
+  background-color: rgba(0,0,0,0.1);
+  height: 9em;
+
+}
+
+.video-object-container{
+  height: 100%;
+  display: inline-block;
+}
+.video-object{
+   margin:10px 8px 0px 0px;
+   width:10em;
+   height: calc(100% - 15px - 2em);
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+.video-info{
+  width: 10em;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.video-info-title{
+  font-size: 13px;
+  white-space: nowrap;
+}
+
 .topic-preview-text p span{
   background-color: inherit !important;
 }

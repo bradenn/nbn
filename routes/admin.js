@@ -43,7 +43,7 @@ router.get('/articles', function(req, res, next) {
 router.post('/account/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     User.findById(req.params.id, function(err, target) {
-      if (user.account.toString() == "admin" || user.account.toString() == "superadmin") {
+      if (user.account.toString() === "admin" || user.account.toString() === "superadmin") {
         target.account = req.body.type;
         target.save(function(err) {
           res.redirect(req.get('referer'));

@@ -9,15 +9,13 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8">
-        <h5 class="text-white">New Topic</h5>
+        <h5 class="text-white">New Article</h5>
         <div class="card" style="">
           <div class="card-body">
             <form method="post" action="/new/topic" id="form" enctype="multipart/form-data">
               <div class="form-group">
                 <label class="form-nomargin">Title</label>
-                <input readonly onfocus="if (this.hasAttribute('readonly')) {
-    this.removeAttribute('readonly');
-    this.blur();    this.focus();  }" type="text" class="form-control" id="title" name="title" placeholder="Title">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title">
               </div>
               <div class="form-group">
                 <label class="form-nomargin">Article</label>

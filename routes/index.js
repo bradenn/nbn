@@ -7,6 +7,8 @@ for (let i = 0; i < config.pages.length; i++) {
   router.use(config.pages[i].url, require(config.pages[i].route));
 }
 
+// Handle simple logout requests
+// TODO: Should be handled in another class
 router.get('/logout', function(req, res, next) {
   if (req.session) {
     req.session.destroy(function(err) {

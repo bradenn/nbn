@@ -71,9 +71,15 @@
      </li>
      <% } %>
      <%  if(user.account == "writer" || user.account == "admin" || user.account == "superadmin") { %>
-     <li class="nav-item">
-       <a class="nav-link" href="/new"><i class="fas fa-plus"></i>&nbsp;&nbsp;New</a>
-     </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-plus"></i> New
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/new/article">Article</a>
+            <a class="dropdown-item" href="/new/video">Video&nbsp;<span class="text-primary float-right">new</span></a>
+          </div>
+        </li>
      <% } } %>
     </ul>
     <ul class="navbar-nav ml-auto">

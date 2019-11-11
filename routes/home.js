@@ -1,13 +1,14 @@
 var router = require('express').Router();
 let User = require('../models/user');
 let Topic = require('../models/topic');
+let Video = require('../models/video');
 
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
-    var e = {
+    let e = {
       'published': true
     };
-    if (req.query.s == "following") e = {
+    if (req.query.s === "following") e = {
       $and: [{
         'owner': {
           $in: user.following
@@ -35,14 +36,17 @@ router.get('/', function(req, res, next) {
         Topic.find({
 
         }, function(err, following) {
+          Video.find({}, function(err, videos) {
           return res.render("home", {
             title: "Name Brand News : Home",
             user: user,
             topics: topics,
+            videos: videos,
             trending: trending,
             following: following,
             query: req.query.s,
             sec: req.query.sec
+          });
           });
         }).sort({
           views: -1,
