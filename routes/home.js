@@ -58,7 +58,7 @@ router.get('/', function(req, res, next) {
       }).limit(4);
     }).sort({
       _id: -1
-    }).limit(8);
+    }).limit(25);
   });
 });
 

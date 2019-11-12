@@ -13,7 +13,7 @@ html[data-theme='light'] {
   --secondary: rgba(248, 248, 248, 0.72);
   --secondary-solid: rgba(248, 248, 248, 1);
   --accent: rgba(0, 122, 255, 1);
-  --accent-dim: rgb(0, 122, 255, 0.12);
+  --accent-dim: rgba(0, 122, 255, 0.12);
   --text: #000;
   --primary: rgba(0, 122, 255, 1);
 }
@@ -31,10 +31,70 @@ body{
 }
 
 .video-container{
-  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, .08), 0 1px 3px 1px rgba(60, 64, 67, .3);
-  background-color: rgba(0,0,0,0.1);
+  background-color: transparent;
   height: 9em;
+}
 
+.tiny-info{
+  font-size: 11px;
+  color: rgba(255,255,255,0.8);
+}
+
+.title-container{
+  height:9em;
+
+  position: relative;
+}
+.title-container-lg{
+  height:16em;
+
+  position: relative;
+}
+
+.title-container .title-box{
+  padding-bottom: 8px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.title-container-lg .title-box{
+  padding-bottom: 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.card-bg{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 0 !important;
+  min-height: 9em;
+  height:9em;
+}
+
+.card-bg .title-box{
+  color: #fff !important;
+  vertical-align: bottom;
+}
+
+.title-box h5{
+  color: #fff;
+}
+
+.card-bg-lg .title-box{
+  color: #fff !important;
+  vertical-align: bottom;
+}
+
+
+.card-bg-lg{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 0 !important;
+  min-height: 16em;
 }
 
 .video-object-container{
@@ -42,15 +102,13 @@ body{
   display: inline-block;
 }
 .video-object{
-   margin:10px 8px 0px 0px;
-   width:10em;
-   height: calc(100% - 15px - 2em);
+   min-height: 9em;
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
  }
 .video-info{
-  width: 10em;
+
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
