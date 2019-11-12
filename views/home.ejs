@@ -14,10 +14,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <a href="/topic/<%= topics[0]._id %>" class="no-bs">
-                        <div class="card card-bg-lg" style=" background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0), rgba(0, 0, 0, .5)), url(<%= topics[0].picture %>)">
+                        <div class="card card-bg-lg" style=" background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0), rgba(0, 0, 0, .6)), url(<%= topics[0].picture %>)">
                             <div class="title-container-lg">
                                 <div class="title-box">
-                                    <h5><%= topics[0].title %></h5>
+                                    <h5><%= titles(topics[0].title) %></h5>
                                     <span class="tiny-info"><%= topics[0].views %> Views • <%= timeSince(new Date(topics[0].date)) %> ago</span>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <div class="col-md-8">
                                         <div class="title-container">
                                             <div class="title-box">
-                                                <h5><%= topic.title %></h5>
+                                                <h5><%= titles(topic.title) %></h5>
                                                 <span class="tiny-info"><%= topic.views %> Views • <%= timeSince(new Date(topic.date)) %> ago</span>
                                             </div>
 
@@ -57,14 +57,14 @@
                     <div class="col-md-12">
                         <a href="/watch/<%= video._id %>" class="no-bs">
                             <div class="card mb-3 card-bg"
-                                 style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0), rgba(0, 0, 0, .5)), url(https://img.youtube.com/vi/<%= video.link %>/0.jpg)">
+                                 style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0), rgba(0, 0, 0, .7)), url(https://img.youtube.com/vi/<%= video.link %>/0.jpg)">
                                 <div class="row no-gutters">
                                     <div class="col-md-8">
 
                                         <div class="title-container">
                                             <span class="badge badge-primary">Video</span>
                                             <div class="title-box">
-                                                <h5><%= video.title %></h5>
+                                                <h5><%= titles(video.title) %></h5>
                                                 <span class="tiny-info"><%= video.views %> Views • <%= timeSince(new Date(video.date)) %> ago</span>
                                             </div>
                                         </div>
@@ -87,6 +87,12 @@
 </html>
 
 <%
+    function titles(title){
+        let t = title.substring(0, 50);
+        if(t.length >= 49) t+="...";
+        return t;
+    }
+
 function timeSince(date) {
 
     var seconds = Math.floor((new Date() - date) / 1000);
