@@ -18,6 +18,19 @@ html[data-theme='light'] {
   --primary: rgba(0, 122, 255, 1);
 }
 
+.navbar-text{
+    padding: .5rem .5rem;
+    line-height: inherit;
+    font-size: 14px;
+}
+
+div .footer-links{
+}
+div .footer-links{
+    font-size: 11px;
+}
+
+
 body{
   font-family: 'IBM Plex Sans Medium', sans-serif;
 }
@@ -28,6 +41,12 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   background-size:contain;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: rgba(0,0,0,1) !important;
+    border-bottom: 1px solid rgba(0,0,0,0) !important;
+
 }
 
 .video-container{
@@ -72,6 +91,12 @@ body{
   border-radius: 0 !important;
   min-height: 9em;
   height:9em;
+}
+
+.card-bge{
+    border-radius: 0 !important;
+    min-height: 9em;
+    height:9em;
 }
 
 .card-bg .title-box{
@@ -125,7 +150,7 @@ body{
 }
 
 
-.card:hover{
+.card-bg:hover{
   box-shadow: 0 1px 1px 0 rgba(60, 64, 67, .08), 0 1px 3px 1px rgba(60, 64, 67, .3);
 }
 
