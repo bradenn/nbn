@@ -901,20 +901,23 @@ a.text-primary:focus, a.text-primary:active, a.text-primary:hover {
 }
 
 .comment {
-  padding: 10px 15px;
-  border-radius: 12px;
-  background-color: var(--secondary);
+  padding: 6px 12px;
   color: var(--text);
   vertical-align: middle;
   margin-bottom: 16px;
 }
 
+.comment-inline .list-inline-item{
+  font-size: 12px;
+}
+
 .comment .title {
   color: var(--text);
   font-size: 15px;
-  display: block;
+  font-weight: bolder;
+  display: inline-block;
   font-family: 'IBM Plex Sans', sans-serif;
-  opacity: 0.80;
+  opacity: 0.9;
 }
 
 .comment .sub-title {
@@ -929,11 +932,12 @@ a.text-primary:focus, a.text-primary:active, a.text-primary:hover {
   color: var(--text);
   font-size: 15px;
   font-family: 'IBM Plex Sans', sans-serif;
-  opacity: 0.5;
+  opacity: 0.7;
+  margin-bottom: 0rem;
 }
 
 ul {
-  padding-inline-start: 12px;
+  padding-inline-start: 0em;
 }
 
 .reply {
@@ -1024,10 +1028,15 @@ ul {
 }
 
 .comment-img {
-  width: 32px;
-  height: 32px;
+  width: 3em;
+  height: 3em;
+  margin-right: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   border-radius: 50%;
-  vertical-align: middle;
+  vertical-align: top;
+  display: inline-block;
 }
 
 .side-list-image {

@@ -1,4 +1,4 @@
-var router = require('express').Router();
+let router = require('express').Router();
 let User = require('../models/user');
 let Topic = require('../models/topic');
 
@@ -28,7 +28,7 @@ router.get('/', function (req, res, next) {
                     },
 
                     function (err, users) {
-                        let hrTimeE= process.hrtime();
+                        let hrTimeE = process.hrtime();
                         return res.render("search", {
                             title: "Search",
                             user: user,
