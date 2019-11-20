@@ -38,6 +38,31 @@
         <li class="nav-item <% if(typeof sec != 'undefined'){ if(sec == "history"){ %>active<% } } %>">
           <a class="nav-link no-ul" href="/?sec=history">History</a>
         </li>
+        <span class="navbar-text">
+        |
+       </span>
+        <li class="nav-item">
+          <a class="nav-link no-ul" href="/search"><i class="fas fa-search"></i></a>
+        </li>
+        <% if(user != null){ if(user.account == "admin" || user.account == "superadmin") { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin"><i class="fas fa-shield-alt"></i></a>
+          </li>
+        <% } %>
+        <%  if(user.account == "writer" || user.account == "admin" || user.account == "superadmin") { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-plus"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/new/article">Article</a>
+              <a class="dropdown-item" href="/new/video">Video&nbsp;<span class="text-primary float-right">new</span></a>
+            </div>
+          </li>
+        <% } } %>
+        <span class="navbar-text">
+        |
+       </span>
         <% if(user != null){ %>
           <li class="nav-item">
             <a class="nav-link no-ul" href="/profile"><%= user.username %></a>
@@ -52,45 +77,5 @@
         <% } %>
       </ul>
     </div>
-  </div>
-</nav>
-<nav class="navbar bottom navbar-expand-lg navbar-light bg-light d-none d-sm-block" style="border-bottom: 1px solid rgba(0,0,0,0.2);border-top: 1px solid rgba(0,0,0,0.2); color: #000;">
-  <div class="container">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="/"><i class="fas fa-newspaper"></i>&nbsp;&nbsp;News</a>
-      </li>
-      <% if(user != null){ if(user.account == "admin" || user.account == "superadmin") { %>
-     <li class="nav-item">
-       <a class="nav-link" href="/admin"><i class="fas fa-shield-alt"></i>&nbsp;&nbsp;Admin</a>
-     </li>
-     <% } %>
-     <%  if(user.account == "writer" || user.account == "admin" || user.account == "superadmin") { %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-plus"></i> New
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="/new/article">Article</a>
-            <a class="dropdown-item" href="/new/video">Video&nbsp;<span class="text-primary float-right">new</span></a>
-          </div>
-        </li>
-     <% } } %>
-    </ul>
-    <ul class="navbar-nav ml-auto ">
-      <span class="navbar-text">
-      Connect with us:
-      </span>
-      <li class="nav-item">
-        <a class="nav-link" href="https://twitter.com/namebrandnews1" target="_blank"><i class="fab fa-twitter"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www.youtube.com/channel/UCG3GWWwwelDNeF409cDRPqg" target="_blank"><i class="fab fa-youtube"></i></a>
-      </li>
-
-      <form class="form-inline my-2 my-lg-0" action="/search/" method="get">
-        <input class="form-control mr-sm-2 nav-search" type="search" placeholder="Search" name="q" id="q" aria-label="Search">
-      </form>
-    </ul>
   </div>
 </nav>

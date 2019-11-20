@@ -154,7 +154,7 @@ body{
   box-shadow: 0 1px 1px 0 rgba(60, 64, 67, .08), 0 1px 3px 1px rgba(60, 64, 67, .3);
 }
 
-.navbar .bottom{
+.navbar{
   box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
 }
 
@@ -1156,25 +1156,17 @@ ul {
 
 .btn-primary:hover {
   background-color: var(--accent);
-  color: var(--text) !important;
+  color: #fff;
 }
 
 
 .btn-primary:active {
   background-color: var(--accent) !important;
-  color: var(--text) !important;
+  color: #fff;
 }
+
+
 /*
-
-.navbar-dark .navbar-nav .nav-link {
-  color: var(--text);
-  height: 100%;
-  font-size: 13px;
-  font-weight: 600;
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
 .navbar-dark .navbar-nav .nav-link:hover {
   color: var(--accent);
   height: 100%;

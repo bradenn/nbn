@@ -7,6 +7,8 @@
 
 <body>
 <%- include("partials/nav.ejs"); %>
+
+<% if (typeof query == 'undefined') query = ""; %>
 <div class="container" style="margin-top:32px;">
     <div class="row">
         <div class="col-md-3">
@@ -22,15 +24,16 @@
                 </div>
             </form>
             <div class="search-header">
-                <span class="text-dark text-xl">Search results:</span>
-                <% if(topics.length != 0 || users != null){ %>
+
+                <% if(topics != null || users != null){ %>
+                    <span class="text-dark text-xl">Search results:</span>
                     <span class="text-muted text-sm">Query returned <%= topics.length + users.length %> item(s) in <%= time %> seconds.</span>
                 <% } %>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
-                    <% if(users != null){ %>
+                    <% if(typeof users != 'undefined' && users != null){ %>
                         <span class="text-dark text-xl">Users:</span>
                         <% users.forEach(function(usr){ %>
                             <a href="/u/<%= usr.username %>" class="no-bs">
@@ -44,9 +47,9 @@
                                 </div>
                             </a>
 
-                    <% }); } if(users.length == 0){ %>
+                    <% }); } if(typeof users != 'undefined'){ if(users.length == 0){ %>
                         <span class="text-muted">No results found for "<i><%= query %></i>"</span>
-                    <% } %>
+                    <% }} %>
                 </div>
             </div>
 
@@ -74,11 +77,11 @@
                         </a>
                     </div>
 
-                <% }); } if(topics.length == 0){ %>
+                <% }); } if(typeof topics != 'undefined'){ if(topics.length == 0){ %>
                     <div class="col-md-12">
                         <span class="text-muted">No results found for "<i><%= query %></i>"</span>
                     </div>
-                <% } %>
+                <% } } %>
             </div>
         </div>
         <br>
