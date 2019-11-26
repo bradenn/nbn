@@ -10,81 +10,92 @@
 
 <div class="container" style="margin-top:16px;">
     <div class="row">
-        <div class="col-md-9">
-            <h5>Latest</h5>
+        <% trending.forEach(topic => { %>
+            <div class="col-md-6">
+
+                <div class="d-flex" style="max-height: 11em; word-break: normal;">
+                    <div class="p-2 flex-fill" style="width: 50%;">
+                        <div class="bg-img" style="background-image: url(<%= topic.picture %>); height: 100%;"></div>
+                    </div>
+                    <div class="p-2 flex-fill" style="width: 100%;">
+                        <a href="/topic/<%= topic._id %>" class="no-bs">
+                            <h5 class="post-section"><%= topic.section.toUpperCase() %></h5>
+                            <h4 class="post-title"><%= titles(topic.title) %></h4>
+                            <span class="post-desc d-none d-sm-block"
+                                  style="max-height: 40px !important; overflow: hidden"><%= topic.desc %></span>
+                            <div class="d-flex justify-content-between">
+                                <div class="p-2" style="padding:0 !important;">
+                                    <span class="post-source"><%= topic.owner.firstname %> <%= topic.owner.lastname %></span>
+                                    <span class="post-meta"> <%= new Date(topic.date).toDateString() %></span>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        <% }); %>
+
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-7">
             <div class="row">
-                <div class="col-md-12">
-                    <% if(topics.length > 0) { %>
-                    <a href="/topic/<%= topics[0]._id %>" class="no-bs">
-                        <div class="card card-bg-lg"
-                             style=" background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0), rgba(0, 0, 0, .6)), url(<%= topics[0].picture %>)">
-                            <div class="title-container-lg">
-                                <div class="title-box">
-                                    <h5><%= titles(topics[0].title) %></h5>
-                                    <span class="tiny-info"><%= topics[0].views %> Views • <%= timeSince(new Date(topics[0].date)) %> ago</span>
+                <% topics.forEach(topic => { %>
+                    <div class="col-md-12">
+                        <div class="d-flex " style="max-height: 10em; word-break: normal; margin-bottom: 32px;">
+                            <div class="p-2 flex-grow-1" style="width: 100%;">
+                                <h5 class="post-section"><%= topic.section.toUpperCase() %></h5>
+                                <h4 class="post-title"><%= titles(topic.title) %></h4>
+                                <span class="post-desc d-none d-sm-block"><%= topic.desc %></span>
+                                <div class="d-flex justify-content-between">
+                                    <div class="p-2" style="padding:0 !important;">
+                                        <span class="post-source"><%= topic.owner.firstname %> <%= topic.owner.lastname %></span>
+                                        <span class="post-meta"> <%= new Date(topic.date).toDateString() %></span>
+                                    </div>
+                                    
                                 </div>
                             </div>
+                            <div class="p-2">
+                                <div style="background-image: url(<%= topic.picture %>); width: 10em; height:100%; background-position: center; background-size: cover"></div>
+                            </div>
                         </div>
-                    </a>
-                    <% } %>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-4">
+            <br>
+            <h4>Trending now</h4>
+            <hr>
+            <% let itr = 0; trending.forEach(topic => { itr++; %>
+            <div class="d-flex " style="">
+                <div class="p-2 lg-num"><%= itr %></div>
+                <div class="p-2">
+                    <h4 class="post-title"><%= topic.title %></h4>
+                    <span class="post-desc"><%= topic.desc %></span>
                 </div>
 
             </div>
             <br>
-            <h5>Recent</h5>
-            <div class="row">
-                <% if(typeof topics != 'undefined') { let itr = 0; topics.forEach((topic) => { itr++; if(itr > 1){ %>
-                    <div class="col-md-4">
-                        <a href="/topic/<%= topic._id %>" class="no-bs">
-                            <div class="card mb-3 card-bg"
-                                 style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0), rgba(0, 0, 0, .7)), url(<%= topic.picture %>)">
-                                <div class="row no-gutters">
-                                    <div class="col-md-8">
-                                        <div class="title-container">
-                                            <div class="title-box">
-                                                <h5><%= titles(topic.title) %></h5>
-                                                <span class="tiny-info"><%= topic.views %> Views • <%= timeSince(new Date(topic.date)) %> ago</span>
-                                            </div>
+            <% }); %>
+            <hr>
+            <div style="text-align: center">
+                <span class="text-muted">Copyright &copy; 2019</span>
+                <br>
+                <div class="footer-links">
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                <% }}); } %>
+                    <a href="mailto:legal@namebrandnews.com" class="text-muted">legal</a> &bull;
+                    <a href="/privacy" class="text-muted">privacy</a> &bull;
+                    <a href="/terms" class="text-muted">terms</a><br>
+                </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <h5>Videos</h5>
-            <div class="row">
-                <% videos.forEach((video) => { %>
-                    <div class="col-md-12">
-                        <a href="/watch/<%= video._id %>" class="no-bs">
-                            <div class="card mb-3 card-bg"
-                                 style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0), rgba(0, 0, 0, .7)), url(https://img.youtube.com/vi/<%= video.link %>/0.jpg)">
-                                <div class="row no-gutters">
-                                    <div class="col-md-8">
-
-                                        <div class="title-container">
-                                            <span class="badge badge-primary">Video</span>
-                                            <div class="title-box">
-                                                <h5><%= titles(video.title) %></h5>
-                                                <span class="tiny-info"><%= video.views %> Views • <%= timeSince(new Date(video.date)) %> ago</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                <% }); %>
-            </div>
-
         </div>
     </div>
+
 </div>
 
 
@@ -95,8 +106,8 @@
 
 <%
 function titles(title) {
-    let t = title.substring(0, 50);
-    if (t.length >= 49) t += "...";
+    let t = title.substring(0, 65);
+    if (t.length >= 64) t += "...";
     return t;
 }
 
