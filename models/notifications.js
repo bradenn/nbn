@@ -1,4 +1,3 @@
-const config = require("../config.json");
 let crypto = require('crypto');
 let mongoose = require('mongoose');
 
@@ -16,6 +15,6 @@ let NotificationSchema = new mongoose.Schema({
 });
 
 
-var Notification = mongoose.model('Notification', NotificationSchema);
+let Notification = mongoose.model('Notification', NotificationSchema);
 
 module.exports = Notification;

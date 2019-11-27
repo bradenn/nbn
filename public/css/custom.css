@@ -150,7 +150,7 @@ body {
     white-space: nowrap;
 }
 
-.topic-preview-text p span {
+.post-preview-text p span {
     background-color: inherit !important;
 }
 
@@ -215,7 +215,7 @@ body {
    /* max-width: 1440px;*/
 }
 
-.topic-image-full {
+.post-image-full {
     height: 200px;
     background-position: center;
     background-repeat: no-repeat;
@@ -409,7 +409,7 @@ body {
     vertical-align: center;
 }
 
-.dropdown-header{
+.dropdown-header-a{
     padding:0;
     color: rgba(0,0,0,0.7)
 }
@@ -611,6 +611,7 @@ h5{
     line-height: 20px !important;
     opacity: 0.7;
     max-height: 40px !important;
+    overflow: hidden;
 
 }
 .post-source{
@@ -639,7 +640,7 @@ hr {
     font-size: 80%;
 }
 
-.topic-inline-title {
+.post-inline-title {
     color: var(--text);
 
     font-size: 16px;
@@ -647,7 +648,7 @@ hr {
 
 }
 
-.topic-inline-subtext {
+.post-inline-subtext {
     color: var(--text);
     font-size: 13px;
     margin-top: -2px;
@@ -694,24 +695,24 @@ h5 {
     color:inherit;
 }
 
-.topic-inline {
+.post-inline {
     margin-bottom: 16px;
     padding: 8px;
     border-radius: 12px;
 }
 
-.topic-inline:hover {
+.post-inline:hover {
     background-color: var(--secondary);
 }
 
-.topic-title {
+.post-title-lg {
     color: var(--text);
     font-size: 35px;
     font-weight: 300;
     font-family: 'IBM Plex Serif', serif;
 }
 
-.topic-subtext {
+.post-subtext {
     color: var(--text);
     font-size: 14px;
 
@@ -719,15 +720,15 @@ h5 {
     display: block;
 }
 
-.topic {
+.post {
     margin-bottom: 16px;
     padding: 16px;
 }
 
-.topic:hover {
+.post:hover {
 }
 
-.topic-preview-text {
+.post-preview-text {
     color: var(--text);
     font-size: 20px;
     line-height: 1.875rem;
@@ -737,13 +738,13 @@ h5 {
     display: block;
 }
 
-.topic-image {
+.post-image {
     height: 48px;
     width: 48px;
     border-radius: 50%;
 }
 
-.topic-element {
+.post-element {
     height: 100%;
     display: inline-block;
     vertical-align: middle;
@@ -757,7 +758,7 @@ h5 {
     text-decoration: none;
 }
 
-.topic-inline-preview {
+.post-inline-preview {
     color: var(--text);
     font-size: 13px;
 
@@ -767,7 +768,7 @@ h5 {
     overflow: hidden;
 }
 
-.topic-inline-preview-textd {
+.post-inline-preview-textd {
     color: var(--text);
     font-size: 13px;
 
@@ -777,7 +778,7 @@ h5 {
     overflow: hidden;
 }
 
-.topic-inline-image {
+.post-inline-image {
     height: 48px;
     width: 48px;
     border-radius: 50%;
@@ -787,7 +788,7 @@ h5 {
     margin-right: 8px;
 }
 
-.topic-inline-element {
+.post-inline-element {
     height: 100%;
     display: inline-block;
     vertical-align: middle;
@@ -823,7 +824,7 @@ h5 {
     word-wrap: normal;
 }
 
-.topic-preview-text img {
+.post-preview-text img {
     width: 100%;
 }
 
@@ -1100,10 +1101,10 @@ ul {
     clear: both;
 }
 
-.topic-comments {
+.post-comments {
 }
 
-.topic-comments h5 {
+.post-comments h5 {
     font-size: 16px;
 
     color: var(--text);
@@ -1253,7 +1254,7 @@ h2 {
     font-weight: 600;
 }
 
-.topic-options {
+.post-options {
 }
 
 .list-inline-item {

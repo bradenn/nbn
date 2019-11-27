@@ -24,20 +24,20 @@
               </tr>
             </thead>
             <tbody>
-              <% topics.forEach(function(topic){ %>
+              <% posts.forEach(function(post){ %>
               <tr>
-                <td class="td-img" style="background-image:url(<%= topic.picture %>);"></td>
-                <td><%= topic.title %></td>
-                <td><%= topic.views %></td>
-                <td class="text-<%= (topic.standing)<=0?'success':(topic.standing)>=2?'danger':'warning' %>"><%= (topic.standing)<=0?"Good":(topic.standing)>=2?"Poor":"Moderate" %></td>
+                <td class="td-img" style="background-image:url(<%= post.picture %>);"></td>
+                <td><%= post.title %></td>
+                <td><%= post.views %></td>
+                <td class="text-<%= (post.standing)<=0?'success':(post.standing)>=2?'danger':'warning' %>"><%= (post.standing)<=0?"Good":(post.standing)>=2?"Poor":"Moderate" %></td>
                 <td>
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Actions
                     </button>
                   <div class="dropdown-menu dropdown-menu-left" aria-labelledby="">
-                      <a class="dropdown-item" href="/moderation/<%= topic._id %>/archive">Archive</a>
-                      <a class="dropdown-item" href="/topic/edit/<%= topic._id %>">Edit</a>
+                      <a class="dropdown-item" href="/moderation/<%= post._id %>/archive">Archive</a>
+                      <a class="dropdown-item" href="/post/edit/<%= post._id %>">Edit</a>
                     </div>
                   </div>
                 </td>

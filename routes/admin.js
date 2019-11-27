@@ -1,6 +1,6 @@
 var router = require('express').Router();
 let User = require('../models/user');
-let Topic = require('../models/topic');
+let Post = require('../models/post');
 
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
@@ -26,11 +26,11 @@ router.get('/articles', function(req, res, next) {
       username: req.query.target
     }, function(err, target) {
       var e = {};
-      Topic.find(e, function(err, topics) {
+      Post.find(e, function(err, posts) {
         return res.render("articleadmin", {
           title: "Admin : Articles",
           user: user,
-          topics: topics,
+          posts: posts,
           state: "articles"
         });
       }).sort({

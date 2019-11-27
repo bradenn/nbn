@@ -1,9 +1,9 @@
-var router = require('express').Router();
+let router = require('express').Router();
 let User = require('../models/user');
-let Topic = require('../models/topic');
+let Post = require('../models/post');
 let Video = require('../models/video');
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   User.findById(req.session.userId, function(err, user) {
     let e = {
       'published': true
@@ -29,18 +29,18 @@ router.get('/', function(req, res, next) {
         }
       ]
     };
-    Topic.find(e, function(err, topics) {
-      Topic.find({
+    Post.find(e, function(err, posts) {
+      Post.find({
         published: true
       }, function(err, trending) {
-        Topic.find({
+        Post.find({
 
         }, function(err, following) {
           Video.find({}, function(err, videos) {
           return res.render("home", {
             title: "Name Brand News : Home",
             user: user,
-            topics: topics,
+            posts: posts,
             videos: videos,
             trending: trending,
             following: following,

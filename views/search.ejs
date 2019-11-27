@@ -16,7 +16,7 @@
         <div class="col-md-6">
             <form action="/search/" method="get">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="q" id="q" placeholder="Search Query"
+                    <input type="text" class="form-control" name="q" id="q" placeholder="Search"
                            value="<%= query %>">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit">Search</button>
@@ -25,9 +25,9 @@
             </form>
             <div class="search-header">
 
-                <% if(topics != null || users != null){ %>
+                <% if(posts != null || users != null){ %>
                     <span class="text-dark text-xl">Search results:</span>
-                    <span class="text-muted text-sm">Query returned <%= topics.length + users.length %> item(s) in <%= time %> seconds.</span>
+                    <span class="text-muted text-sm">Query returned <%= posts.length + users.length %> item(s) in <%= time %> seconds.</span>
                 <% } %>
             </div>
 
@@ -37,12 +37,12 @@
                         <span class="text-dark text-xl">Users:</span>
                         <% users.forEach(function(usr){ %>
                             <a href="/u/<%= usr.username %>" class="no-bs">
-                                <div class="topic-inline">
-                                    <div class="topic-inline-element margin-right">
-                                        <img src="<%= usr.picture %>" class="topic-inline-image">
+                                <div class="post-inline">
+                                    <div class="post-inline-element margin-right">
+                                        <img src="<%= usr.picture %>" class="post-inline-image">
                                     </div>
-                                    <div class="topic-inline-element">
-                                        <span class="topic-inline-title"><%= usr.username %></span>
+                                    <div class="post-inline-element">
+                                        <span class="post-inline-title"><%= usr.username %></span>
                                     </div>
                                 </div>
                             </a>
@@ -53,31 +53,31 @@
                 </div>
             </div>
 
-            <% if(topics != null){ %>
+            <% if(posts != null){ %>
                 <br>
                 <span class="text-dark text-xl">Articles:</span>
             <div class="row">
-                <% topics.forEach((topic) => { %>
+                <% posts.forEach(post => { %>
                     <div class="col-md-12">
-                        <a href="/topic/<%= topic._id %>" class="no-bs">
-                            <div class="card mb-3 card-bg"
-                                 style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, .0), rgba(0, 0, 0, .7)), url(<%= topic.picture %>)">
-                                <div class="row no-gutters">
-                                    <div class="col-md-8">
-                                        <div class="title-container">
-                                            <div class="title-box">
-                                                <h5><%= titles(topic.title) %></h5>
-                                                <span class="tiny-info"><%= topic.views %> Views • <%= timeSince(new Date(topic.date)) %> ago</span>
-                                            </div>
-
-                                        </div>
+                        <div class="d-flex " style="max-height: 10em; word-break: normal; margin-bottom: 32px;">
+                            <div class="p-2 flex-grow-1" style="width: 100%;">
+                                <h5 class="post-section"><%= post.section.toUpperCase() %></h5>
+                                <h4 class="post-title"><%= titles(post.title) %></h4>
+                                <span class="post-desc d-none d-sm-block"><%= post.desc %></span>
+                                <div class="d-flex justify-content-between">
+                                    <div class="p-2" style="padding:0 !important;">
+                                        <span class="post-source"><%= post.owner.firstname %> <%= post.owner.lastname %></span>
+                                        <span class="post-meta"> <%= new Date(post.date).toDateString() %></span>
                                     </div>
+
                                 </div>
                             </div>
-                        </a>
+                            <div class="p-2">
+                                <div style="background-image: url(<%= post.picture %>); width: 10em; height:100%; background-position: center; background-size: cover"></div>
+                            </div>
+                        </div>
                     </div>
-
-                <% }); } if(typeof topics != 'undefined'){ if(topics.length == 0){ %>
+                <% }); } if(typeof posts != 'undefined'){ if(posts.length == 0){ %>
                     <div class="col-md-12">
                         <span class="text-muted">No results found for "<i><%= query %></i>"</span>
                     </div>
@@ -118,11 +118,5 @@ function timeSince(date) {
     }
     return Math.floor(seconds) + " seconds";
 }
-var aDay = 24 * 60 * 60 * 1000
-
-function titles(title) {
-    let t = title.substring(0, 50);
-    if (t.length >= 49) t += "...";
-    return t;
-}
+var aDay = 24 * 60 * 60 * 1000;
 %>

@@ -9,29 +9,37 @@ var favicon = require('serve-favicon');
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
+// This code will not be reached if the config file cannot be located
+// thus it is irrelevant; it however does help me know that the whole
+// app is working correctly.
+if (config !== null) {
+    console.log("Loaded config file successfully.");
+}
+
+
 //connect to MongoDB
-mongoose.connect(config.mongourl, { useNewUrlParser: true });
+mongoose.connect(config.mongourl, {useNewUrlParser: true, useUnifiedTopology: true});
 var db = mongoose.connection;
 mongoose.set('useCreateIndex', true);
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
-  console.log('Connected to MongoDB with no errors.');
+    console.log('Connected to MongoDB with no errors.');
 });
 
 //use sessions for tracking logins
 app.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false,
-  store: new MongoStore({
-    mongooseConnection: db
-  })
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: db
+    })
 }));
 
 // parse incoming requests
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
 // serve static files from template
@@ -44,20 +52,20 @@ app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('File Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('File Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
 // define as the last app.use callback
 app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.send(err.message);
+    res.status(err.status || 500);
+    res.send(err.message);
 });
 
 
 // listen on port {port} <- config
 app.listen(config.port, function () {
-  console.log('Express server started. Listing on port '+ config.port+'.');
+    console.log('Express server started. Listing on port ' + config.port + '.');
 });

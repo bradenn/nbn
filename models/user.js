@@ -23,11 +23,11 @@ let UserSchema = new mongoose.Schema({
   following: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    autopopulate: true
+    autopopulate: false
   }],
   saved: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Topic'
+    ref: 'Post'
   }],
   firstname: String,
   lastname: String,

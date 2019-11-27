@@ -1,6 +1,6 @@
 <head>
-    <% if(typeof topic != 'undefined'){ %>
-        <title><%= topic.title %></title>
+    <% if(typeof post != 'undefined'){ %>
+        <title><%= post.title %></title>
     <% }else{ %>
         <title>Namebrand</title>
     <% } %>
@@ -19,15 +19,15 @@
         }
     </script>
 
-    <% if(typeof topic != "undefined"){ %>
+    <% if(typeof post != "undefined"){ %>
         <script type="application/ld+json">
     { "@context": "https://schema.org",
      "@type": "Article",
-     "headline": "<%= topic.title %>",
-     "image": "<%= topic.picture %>",
-     "author": "<%= topic.owner.firstname %> <%= topic.owner.lastname %>",
-     "genre": "<%= topic.section %>",
-     "keywords": "<%= topic.tags.join(' ') %>",
+     "headline": "<%= post.title %>",
+     "image": "<%= post.picture %>",
+     "author": "<%= post.owner.firstname %> <%= post.owner.lastname %>",
+     "genre": "<%= post.section %>",
+     "keywords": "<%= post.tags.join(' ') %>",
     "publisher": {
         "@type": "Organization",
         "name": "Name Brand News",
@@ -36,22 +36,22 @@
           "url": "https://www.namebrandnews.com/images/logo.png"
         }
       },
-     "url": "https://namebrandnews.com/topic/<%= topic._id %>",
-     "datePublished": "<%= topic.date %>",
-     "description": "<%= topic.desc %>",
-     "articleBody": "<%= topic.body %>"
+     "url": "https://namebrandnews.com/post/<%= post._id %>",
+     "datePublished": "<%= post.date %>",
+     "description": "<%= post.desc %>",
+     "articleBody": "<%= post.body %>"
      }
         </script>
 
             <meta property="og:locale" content="en_US" />
             <meta property="og:type" content="article" />
-            <meta property="og:title" content="<%= topic.title %>" />
-            <meta property="og:description" content="<%= topic.desc %>" />
-            <meta property="og:url" content="https://namebrandnews.com/topic/<%= topic._id %>" />
+            <meta property="og:title" content="<%= post.title %>" />
+            <meta property="og:description" content="<%= post.desc %>" />
+            <meta property="og:url" content="https://namebrandnews.com/post/<%= post._id %>" />
             <meta property="og:site_name" content="Name Brand News" />
-            <meta property="article:section" content="<%= topic.section %>" />
-            <meta property="article:published_time" content="<%= topic.date %>" />
-            <meta property="og:image" content="<%= topic.picture %>" />
+            <meta property="article:section" content="<%= post.section %>" />
+            <meta property="article:published_time" content="<%= post.date %>" />
+            <meta property="og:image" content="<%= post.picture %>" />
     <% }else{ %>
             <meta property="og:locale" content="en_US" />
             <meta property="og:type" content="website" />
@@ -87,3 +87,4 @@
     </script>
 
 </head>
+

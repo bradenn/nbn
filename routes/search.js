@@ -1,11 +1,11 @@
 let router = require('express').Router();
 let User = require('../models/user');
-let Topic = require('../models/topic');
+let Post = require('../models/post');
 
 router.get('/', function (req, res, next) {
     let hrTime = process.hrtime();
     User.findById(req.session.userId, function (err, user) {
-        Topic.find({
+        Post.find({
                 $or: [{
                     "title": {
                         "$regex": req.query.q,
@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
                     }
                 }]
             },
-            function (err, topics) {
+            function (err, posts) {
 
                 User.find({
                         "username": {
@@ -32,7 +32,7 @@ router.get('/', function (req, res, next) {
                         return res.render("search", {
                             title: "Search",
                             user: user,
-                            topics: topics,
+                            posts: posts,
                             query: req.query.q,
                             users: users,
                             time: Math.round((hrTimeE[0] * 1000 + hrTimeE[1] / 1000000) - (hrTime[0] * 1000 + hrTime[1] / 1000000))/1000

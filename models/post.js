@@ -1,24 +1,44 @@
-const config = require("../config.json");
 let mongoose = require('mongoose');
+let autopopulate = require('mongoose-autopopulate');
 
-// Define schema for `user` database collection
+// Define schema for `post` database collection
 let PostSchema = new mongoose.Schema({
   title: String,
-  type: {
-    type: String,
-    enum: ['image', 'video'],
-    default: 'other'
-  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
+    autopopulate: true
   },
-  content: String,
-  image: String,
+  body: String,
+  picture: String,
+  section: {
+    type: String,
+    enum: ['us', 'world', 'politics', 'business', 'tech', 'health', 'entertainment', 'opinion', 'history'],
+    default: 'us'
+  },
+  tags: [String],
+  desc: String,
+  views: {
+    type: Number,
+    default: "0"
+  },
+  standing: {
+    type: Number,
+    default: 0
+  },
+  published: {
+    type: Boolean,
+    default: false
+  },
+  nsfw: {
+    type: Boolean,
+    default: false
+  },
   date: String
 });
 
+PostSchema.plugin(autopopulate);
 
-var Post = mongoose.model('Post', PostSchema);
+let Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;

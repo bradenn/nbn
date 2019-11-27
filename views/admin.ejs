@@ -6,11 +6,8 @@
   <%- include("partials/nav.ejs"); %>
   <div class="container" style="margin-top:32px;">
     <div class="row">
-      <div class="col-md-2">
-        <%- include("partials/admintools.ejs")%>
-      </div>
 
-      <div class="col-md-9">
+      <div class="col-md-12">
         <div class="card" style="padding-left: 0; padding-right: 0;">
           <div class="card-head">
             <span class="card-head-title">All Users</span>
@@ -19,7 +16,6 @@
             <table class="table table-light">
               <thead>
                 <tr>
-                  <th scope="col">Picture</th>
                   <th scope="col">Name</th>
                   <th scope="col">Username</th>
                   <th scope="col">Rank</th>
@@ -31,7 +27,6 @@
               <tbody>
                 <% users.forEach(function(usr){ %>
                 <tr class="">
-                  <td class="td-img" style="background-image:url(<%= usr.picture %>);"></td>
                   <td><%= usr.firstname %> <%= usr.lastname %></td>
                   <td><%= usr.username %></td>
                   <td class="<%= (usr.account == 'admin')?'text-warning':(usr.account == 'superadmin')?'text-danger':'' %>"><%= usr.account %></td>

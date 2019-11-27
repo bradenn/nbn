@@ -1,15 +1,15 @@
 var router = require('express').Router();
 let User = require('../models/user');
-let Topic = require('../models/topic');
+let Post = require('../models/post');
 
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     var e = {};
-    Topic.find(e, function(err, topics) {
+    Post.find(e, function(err, posts) {
       return res.render("moderate", {
         title: "Moderation",
         user: user,
-        topics: topics
+        posts: posts
       });
     }).sort({
       _id: -1
@@ -19,9 +19,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/flag/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
-    Topic.findById(req.params.id, function(err, topic) {
-      topic.standing += 1;
-      topic.save(function(err) {
+    Post.findById(req.params.id, function(err, post) {
+      post.standing += 1;
+      post.save(function(err) {
         res.redirect(req.get('referer'));
       });
     });
@@ -30,9 +30,9 @@ router.get('/flag/:id', function(req, res, next) {
 
 router.get('/publish/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
-    Topic.findById(req.params.id, function(err, topic) {
-      topic.published = true;
-      topic.save(function(err) {
+    Post.findById(req.params.id, function(err, post) {
+      post.published = true;
+      post.save(function(err) {
         res.redirect(req.get('referer'));
       });
     });
@@ -41,9 +41,9 @@ router.get('/publish/:id', function(req, res, next) {
 
 router.get('/unpublish/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
-    Topic.findById(req.params.id, function(err, topic) {
-      topic.published = false;
-      topic.save(function(err) {
+    Post.findById(req.params.id, function(err, post) {
+      post.published = false;
+      post.save(function(err) {
         res.redirect(req.get('referer'));
       });
     });
@@ -53,7 +53,7 @@ router.get('/unpublish/:id', function(req, res, next) {
 router.get('/delete/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
     if (user.account == "admin" || user.account == "superadmin") {
-      Topic.deleteOne({
+      Post.deleteOne({
         _id: req.params.id
       }, function(err) {
         res.redirect(req.get('referer'));

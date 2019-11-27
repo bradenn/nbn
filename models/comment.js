@@ -4,9 +4,9 @@ let autopopulate = require('mongoose-autopopulate');
 
 let CommentSchema = new mongoose.Schema({
   text: String,
-  topic: {
+  post: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Topic'
+    ref: 'Post'
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
