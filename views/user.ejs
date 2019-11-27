@@ -41,6 +41,7 @@
     <div class="row">
         <% posts.forEach(post => { %>
             <div class="col-md-6">
+                <a href="/post/<%= post._id %>" class="no-bs">
                 <div class="d-flex " style="max-height: 10em; word-break: normal; margin-bottom: 32px;">
                     <div class="p-2 flex-grow-1" style="width: 100%;">
                         <h5 class="post-section"><%= post.section.toUpperCase() %></h5>
@@ -58,6 +59,7 @@
                         <div style="background-image: url(<%= post.picture %>); width: 10em; height:100%; background-position: center; background-size: cover"></div>
                     </div>
                 </div>
+                </a>
             </div>
         <% }); %>
 
