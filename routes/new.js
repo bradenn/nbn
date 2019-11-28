@@ -82,7 +82,7 @@ router.post('/post', upload.single('image'), function (req, res, next) {
         standing: standing,
         tags: tagArray,
         views: 0,
-        nsfw: (!req.body.nsfw)? false : true,
+        nsfw: (req.body.nsfw),
         date: new Date()
     };
 
