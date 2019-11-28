@@ -79,6 +79,7 @@ router.post('/post', upload.single('image'), function (req, res, next) {
         desc: req.body.desc,
         published: true,
         section: req.body.section,
+        caption: req.body.caption,
         standing: standing,
         tags: tagArray,
         views: 0,

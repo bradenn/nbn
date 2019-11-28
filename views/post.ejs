@@ -12,7 +12,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <% if(!post.published){ %>
-                <div class="alert alert-warning">
+                <div class="alert alert-primary">
                     <strong>Warning!</strong> This article has not been published yet. Sharing this article link will
                     breach contract.
                 </div>
@@ -26,6 +26,8 @@
                       style="font-size: 18px !important;"><%= post.desc %></span>
                 <div class="post-element" style="margin-top:8px; margin-bottom:8px; padding:1em 0em;">
                     <div class="comment-img" style="background-image: url(<%= post.owner.picture %>);"></div>
+
+
                     <div class="comment-inline">
                         <span class="title">
                             <a href="/u/<%= post.owner.username %>" class="no-bs text-nice"
@@ -38,8 +40,10 @@
 
                     </div>
                 </div>
+                <div style="text-align: center;">
                 <div style="background-image: url(<%= post.picture %>); background-size: cover; background-repeat: no-repeat; background-position: center; height: 16em;"></div>
-
+                <span class="text-nice" style="opacity: 0.7;"><%= post.caption %></span>
+                </div>
                 <div class="post-preview" style="margin-top: 32px;">
                     <span class="post-preview-text"><span style="font-size: 64px;"><%= post.body.substring(3, 4) %></span><%- post.body.substring(4) %></span>
                 </div>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MongoConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="authenticationDatabase" value="zewmer" />
+          <option name="authenticationMechanism" value="SCRAM-SHA-1" />
+          <option name="label" value="Local" />
+          <option name="password" value="toor" />
+          <option name="serverUrls">
+            <list>
+              <option value="localhost:27017" />
+            </list>
+          </option>
+          <option name="shellWorkingDir" value="zewmer" />
+          <option name="sshTunnelingConfiguration">
+            <SshTunnelingConfiguration />
+          </option>
+          <option name="username" value="zewmer" />
+        </ServerConfiguration>
+      </list>
+    </option>
+    <option name="shellPath" value="mongo" />
+  </component>
+</project>

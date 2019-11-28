@@ -30,6 +30,7 @@ let PostSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  caption: [String],
   nsfw: {
     type: Boolean,
     default: false
