@@ -43,6 +43,12 @@ let UserSchema = new mongoose.Schema({
     enum: ['banned', 'user', 'writer', 'admin', 'superadmin'],
     default: 'user'
   },
+  authcode: String,
+  security: String,
+  verified: {
+    type: Boolean,
+    default: false
+  },
   date: String
 });
 

@@ -2,6 +2,12 @@ let router = require('express').Router();
 let User = require('../models/user');
 let Post = require('../models/post');
 let Video = require('../models/video');
+let utils = require('../services/utils');
+
+utils.getRouteWithUser('/pee', router, (req, res, user, err) => {
+  res.send("PENIS" + err);
+});
+
 
 router.get('/', function(req, res) {
   User.findById(req.session.userId, function(err, user) {

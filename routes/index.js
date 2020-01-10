@@ -5,6 +5,7 @@ let router = express.Router();
 
 router.use("/", require("./home"));
 router.use("/u", require("./user"));
+router.use("/mail", require("./mail"));
 for(let i in config.pages){
   let page = config.pages[i];
   router.use("/"+page, require("./"+page));

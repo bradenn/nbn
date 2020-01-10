@@ -59,9 +59,12 @@
                 <div class="p-1"><div class="inline-text-image" style="background-image: url(<%= user.picture %>);"></div></div>
                 <div class="p-2"><h6 class="dropdown-header dropdown-container" style="padding:0; color:#000;"><%= user.firstname %> <%= user.lastname %></h6><br><span class="text-muted text-sm">/u/<%= user.username %></span></div>
               </div>
+		<% if(user.account == "admin" || user.account == "superadmin" || user.account == "writer"){ %>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/new/article">New Post</a>
-              <div class="dropdown-divider"></div>
+<% } %>        
+      <div class="dropdown-divider"></div>
+	
               <a class="dropdown-item" href="/u/<%= user.username %>">Profile</a>
               <a class="dropdown-item" href="/profile">Settings</a>
               <a class="dropdown-item" href="/logout">Logout</a>

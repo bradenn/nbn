@@ -52,7 +52,7 @@ router.post('/', function(req, res, next) {
           });
         } else {
           req.session.userId = user._id;
-          return res.redirect('/');
+          return res.redirect('/mail/red/new');
         }
       });
     } else {

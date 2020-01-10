@@ -61,6 +61,19 @@ body {
     color: rgba(255, 255, 255, 0.8);
 }
 
+
+.accordion .card-header{
+    background-color: transparent;
+}
+.accordion button{
+    text-decoration: none;
+    color: #000;
+}
+.accordion button:hover{
+    text-decoration: none;
+    color: #000;
+}
+
 .title-container {
     height: 9em;
 

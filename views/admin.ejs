@@ -1,86 +1,118 @@
 <!DOCTYPE html>
-<html lang="en" <% if(user != null){ %>data-theme="<%= user.theme %>" <% }else{ %> data-theme="dark" <% } %>>
+<html lang="en" <% if(user != null){ %>data-theme="<%= user.theme %>"
+<% }else{ %> data-theme="dark"
+        <% } %>
+>
 <%- include("partials/header.ejs"); %>
 
 <body>
-  <%- include("partials/nav.ejs"); %>
-  <div class="container" style="margin-top:32px;">
+<%- include("partials/nav.ejs"); %>
+<div class="container" style="margin-top:32px;">
     <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-head">
+                    <span class="card-head-title">All Users</span>
+                </div>
+                <div class="accordion" id="accordionExample">
+                    <% users.forEach(function(usr){ %>
 
-      <div class="col-md-12">
-        <div class="card" style="padding-left: 0; padding-right: 0;">
-          <div class="card-head">
-            <span class="card-head-title">All Users</span>
-          </div>
-          <div style="overflow-x:auto;">
-            <table class="table table-light">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Username</th>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Change Rank</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% users.forEach(function(usr){ %>
-                <tr class="">
-                  <td><%= usr.firstname %> <%= usr.lastname %></td>
-                  <td><%= usr.username %></td>
-                  <td class="<%= (usr.account == 'admin')?'text-warning':(usr.account == 'superadmin')?'text-danger':'' %>"><%= usr.account %></td>
-                  <td><%= usr.email %></td>
-                  <td>
-                    <% if(usr.account != "superadmin" && usr.account != 'banned'){ %>
-                    <form action="/admin/account/<%= usr._id %>" method="post" style="margin-right:8px;">
-                      <div class="form-row">
-                        <div class="col-8">
-                          <select class="form-control form-inline" name="type" id="type" style="height:31px;">
-                            <option value="<%= usr.account %>"><%= usr.account %></option>
-                            <option value="user">user</option>
-                            <option value="writer">writer</option>
-                            <option value="admin">admin</option>
-                            <option disabled>superadmin</option>
-                          </select>
-                        </div>
-                        <div class="col-4">
-                          <button type="submit" class="btn btn-primary " class="btn btn-primary">Change</button>
-                        </div>
-                      </div>
-                    </form>
-                    <% }else if(usr.account == "banned"){ %>
-                    <span class="text-muted">This user is banned</span>
-                    <% }else{ %>
-                    <span class="text-danger">Cannot be changed</span>
-                    <%  } %>
-                  </td>
-                  <td>
-                    <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Actions
-                      </button>
-                      <div class="dropdown-menu dropdown-menu-left" aria-labelledby="">
-                        <h6 class="dropdown-header">User Settings</h6>
-                        <a class="dropdown-item" href="/u/quarentine/<%= usr._id %>"><i class="fas fa-edit link-elem"></i><span class="link-elem link-text">Edit</span></a>
-                        <h6 class="dropdown-header">Negative Actions</h6>
-                        <a class="dropdown-item" href="/u/<%= (usr.account == 'banned')?'unban':'ban' %>/<%= usr._id %>"><i class="fas fa-gavel link-elem"></i><span class="link-elem link-text"><%= (usr.account == 'banned')?'Unban':'Ban' %></span></a>
-                        <a class="dropdown-item text-<%= (usr.account == 'superadmin')?'muted':'danger' %> <%= (usr.account == 'superadmin')?'disabled':'' %>" href="<%= (usr.account == 'superadmin')?'#':'/u/delete/'+usr._id %>"><i
-                            class="fas fa-trash link-elem"></i><span class="link-elem link-text">Delete</span></a>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <% }); %>
-              </tbody>
-            </table>
-          </div>
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                        data-target="#ee<%= usr._id %>" aria-expanded="true"
+                                        aria-controls="ee<%= usr._id %>">
+                                    <%= usr.username %>
+                                </button>
+                            </h2>
 
+
+                            <div id="ee<%= usr._id %>" class="collapse" aria-labelledby="headingOne"
+                                 data-parent="#accordionExample">
+                                <table class="table">
+                                    <thead class="thread-dark">
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Verified</th>
+                                        <th scope="col">Rank</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="">
+                                        <td><%= usr.firstname %> <%= usr.lastname %></td>
+                                        <td><%= usr.username %></td>
+                                        <td><%= usr.email %></td>
+                                        <td><%= usr.verified %></td>
+                                        <td class="<%= (usr.account == 'admin') ? 'text-warning' : (usr.account == 'superadmin') ? 'text-danger' : '' %>"><%= usr.account %></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-start">
+                                    <div class="p-2">
+                                        <% if(usr.account != "superadmin" && usr.account != 'banned'){ %>
+                                            <form action="/admin/account/<%= usr._id %>" method="post"
+                                                  style="margin-right:8px;">
+                                                <div class="form-row">
+                                                    <div class="col-8">
+                                                        <select class="form-control form-inline" name="type"
+                                                                id="type"
+                                                                style="height:31px; padding-right:20px;">
+                                                            <option value="<%= usr.account %>"><%= usr.account %></option>
+                                                            <option value="user">user</option>
+                                                            <option value="writer">writer</option>
+                                                            <option value="admin">admin</option>
+                                                            <option disabled>superadmin</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <button type="submit" class="btn btn-primary "
+                                                                class="btn btn-primary">Change
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        <% }else if(usr.account == "banned"){ %>
+                                            <span class="text-muted">This user is banned</span>
+                                        <% }else{ %>
+                                            <span class="text-danger">Cannot be changed</span>
+                                        <% } %>
+                                    </div>
+                                    <div class="p-2" style="">
+                                        <div style="width:1px; background-color: #ccc; height: 100%; display: inline-block;" ></div>
+                                    </div>
+                                    <div class="p-2">
+                                    <a class="btn btn-danger btn-sm"
+                                       href="/u/<%= (usr.account == 'banned') ? 'unban' : 'ban' %>/<%= usr._id %>"
+                                       style="display: inline-block;">
+                                        <i class="fas fa-gavel link-elem"></i>
+                                        <span class="link-elem link-text">
+                                                    <%= (usr.account == 'banned') ? 'Unban' : 'Ban' %>
+                                                </span>
+                                    </a>
+                                    </div>
+                                    <div class="p-2">
+                                    <a class="btn btn-danger text-light btn-sm <%= (usr.account == 'superadmin') ? 'disabled' : '' %>"
+                                       href="<%= (usr.account == 'superadmin') ? '#' : '/u/delete/' + usr._id %>"
+                                       style="display: inline-block;"><i
+                                                class="fas fa-trash link-elem"></i><span
+                                                class="link-elem link-text">Delete</span></a>
+                                    </div>
+                                    <div class="p-2" style="">
+                                        <div style="width:1px; background-color: #ccc; height: 100%; display: inline-block; vertical-align: middle" ></div>
+                                        <span class="text-muted" style="display: inline-block; margin-left: 8px; vertical-align: middle">Since <%= new Date(usr.date).toDateString() %></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
         </div>
-
-      </div>
     </div>
-  </div>
+</div>
 </body>
 
 </html>
