@@ -4,6 +4,7 @@ let Post = require('../models/post');
 
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
+	if(user.account != admin || user.account != "superadmin") res.redirect("/?error=bad%20chicken!");
     User.find({}, function(err, users) {
       User.findOne({
         username: req.query.target
