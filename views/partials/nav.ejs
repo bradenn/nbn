@@ -18,15 +18,18 @@
         </li>
         <% if(user != null){ if(user.account == "admin" || user.account == "superadmin") { %>
           <li class="nav-item">
-            <a class="nav-link" href="/admin">Admin</a>
+            <a class="nav-link" href="/admin">admin</a>
           </li>
         <% } } %>
         <% if(user != null){ if(user.account == "admin" || user.account == "superadmin" || user.account == "writer") { %>
-          <li class="nav-item">
-            <a class="nav-link" href="/new/article">New Post</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/new/video">New Video</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              new
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="z-index: 9999999;">
+              <a class="dropdown-item" href="/new/article">Article</a>
+              <a class="dropdown-item" href="/new/video">Video</a>
+            </div>
           </li>
         <% } } %>
         <span class="navbar-text d-none d-sm-block">
@@ -70,16 +73,15 @@
 }">
   <div class="container" >
     <div class="d-flex justify-content-between" style="font-family: 'IBM Plex Sans Light'; font-size:14px; width: 100%; opacity: 0.8; text-transform: uppercase; font-weight: 400;">
-      <div class="p-2">U.S.</div>
-      <div class="p-2">World</div>
-      <div class="p-2">Politics</div>
-      <div class="p-2">Opinion</div>
-      <div class="p-2">Business</div>
-      <div class="p-2">Tech</div>
-      <div class="p-2">Health</div>
-      <div class="p-2">Economy</div>
-      <div class="p-2">Entertainment</div>
-      <div class="p-2">Election 2020</div>
+      <div class="p-2"><a href="/section/us">U.S.</a></div>
+      <div class="p-2"><a href="/section/world">World</a></div>
+      <div class="p-2"><a href="/section/politics">Politics</a></div>
+      <div class="p-2"><a href="/section/opinion">Opinion</a></div>
+      <div class="p-2"><a href="/section/business">Business</a></div>
+      <div class="p-2"><a href="/section/tech">Tech</a></div>
+      <div class="p-2"><a href="/section/health">Health</a></div>
+      <div class="p-2"><a href="/section/economy">Economy</a></div>
+      <div class="p-2"><a href="/section/entertainment">Entertainment</a></div>
     </div>
   </div>
 </nav>

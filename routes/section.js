@@ -1,14 +1,10 @@
-let router = require('express').Router();
-let User = require('../models/user');
+let express = require('express');
+let router = express.Router();
+let Post = require('../models/post');
 
-router.get('/', function(req, res, next) {
-  User.findById(req.session.userId, function(err, user) {
-    return res.render("section", {
-      title: "Section",
-      user: user
-    });
-  });
-
+router.get('/:section', async (req, res) => {
+    let posts = await Post.find({section: req.params.section, published: true}).sort({_id: -1}).exec();
+    res.render("section", {posts: posts});
 });
 
 module.exports = router;

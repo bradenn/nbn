@@ -36,6 +36,11 @@ div .footer-links {
 }
 
 
+.p-2 a{
+    color: #171a1d !important;
+}
+
+
 /*
  * Blog posts
  */

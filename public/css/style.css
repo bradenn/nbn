@@ -3,6 +3,7 @@ body {
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
+
 .chat-window{
   min-height: 500px;
 }
@@ -175,6 +176,7 @@ hr {
 .sort-drop-menu {
   width: 50%;
 }
+
 
 .nav-search {
   color: rgb(215, 218, 220);
