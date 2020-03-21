@@ -13,7 +13,7 @@
         <div class="col-md-8">
             <% if(!post.published){ %>
                 <div class="alert alert-primary">
-                    <strong>Warning!</strong> This article has not been published yet.
+                    <strong>Warning!</strong> This article has not been published yet. <a href="/moderate/publish/<%= post._id %>">Publish</a>
                 </div>
             <% } %>
             <div class="post">
