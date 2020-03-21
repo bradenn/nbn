@@ -1,71 +1,12 @@
-let router = require('express').Router();
-let User = require('../models/user');
+let express = require('express');
+let router = express.Router();
 let Post = require('../models/post');
 let Video = require('../models/video');
-let utils = require('../services/utils');
 
-utils.getRouteWithUser('/pee', router, (req, res, user, err) => {
-  res.send("PENIS" + err);
-});
-
-
-router.get('/', function(req, res) {
-  User.findById(req.session.userId, function(err, user) {
-    let e = {
-      'published': true
-    };
-    if (req.query.s === "following") e = {
-      $and: [{
-        'owner': {
-          $in: user.following
-        }
-      }, {
-        'published': true
-      }]
-    };
-
-    if (req.query.sec != null) e = {
-      $and: [{
-          'section': {
-            $in: req.query.sec
-          }
-        },
-        {
-          'published': true
-        }
-      ]
-    };
-    Post.find(e, function(err, posts) {
-      Post.find({
-        published: true
-      }, function(err, trending) {
-        Post.find({
-
-        }, function(err, following) {
-          Video.find({}, function(err, videos) {
-          return res.render("home", {
-            title: "Name Brand News : Home",
-            user: user,
-            posts: posts,
-            videos: videos,
-            trending: trending,
-            following: following,
-            query: req.query.s,
-            sec: req.query.sec
-          });
-          });
-        }).sort({
-          views: -1,
-          _id: -1
-        }).limit(4);
-      }).sort({
-        views: -1,
-        _id: -1
-      }).limit(4);
-    }).sort({
-      _id: -1
-    }).limit(25);
-  });
+router.get('/', async (req, res, next) => {
+    let posts = await Post.find({published: true}).sort({_id: -1}).exec();
+    let videos = await Video.find({published: true}).exec();
+    return res.render('home', {posts: posts, videos: videos});
 });
 
 module.exports = router;

@@ -18,6 +18,6 @@ let CommentSchema = new mongoose.Schema({
 
 CommentSchema.plugin(autopopulate);
 
-var Comment = mongoose.model('Comment', CommentSchema);
+let Comment = mongoose.model('Comment', CommentSchema);
 
 module.exports = Comment;

@@ -35,8 +35,9 @@
             <br>
 
 
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Save</button>
               <small class="text-warning"><% if(typeof error != 'undefined'){ if(error.type == "login"){ %> <%= error.message %> <% } } %></small>
+              <a href="/moderate/delete/<%= post._id %>" class="btn btn-danger btn-sm">Delete</a>
             </form>
           </div>
         </div>

@@ -52,11 +52,11 @@ router.get('/unpublish/:id', function(req, res, next) {
 
 router.get('/delete/:id', function(req, res, next) {
   User.findById(req.session.userId, function(err, user) {
-    if (user.account == "admin" || user.account == "superadmin") {
+    if (user.account == "admin" || user.account == "superadmin" || user.account == "writer") {
       Post.deleteOne({
         _id: req.params.id
       }, function(err) {
-        res.redirect(req.get('referer'));
+        res.redirect("/");
       });
     } else {
       var ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim();

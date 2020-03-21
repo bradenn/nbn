@@ -5,29 +5,21 @@ let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let session = require('express-session');
 let MongoStore = require('connect-mongo')(session);
-var favicon = require('serve-favicon');
+let favicon = require('serve-favicon');
+let User = require('./models/user');
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
-// This code will not be reached if the config file cannot be located
-// thus it is irrelevant; it however does help me know that the whole
-// app is working correctly.
-if (config !== null) {
-    console.log("Loaded config file successfully.");
-}
-
-
-//connect to MongoDB
 mongoose.connect(config.mongourl, {useNewUrlParser: true, useUnifiedTopology: true});
-var db = mongoose.connection;
+
+let db = mongoose.connection;
 mongoose.set('useCreateIndex', true);
-//handle mongo error
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
     console.log('Connected to MongoDB with no errors.');
 });
 
-//use sessions for tracking logins
 app.use(session({
     secret: 'work hard',
     resave: true,
@@ -37,35 +29,33 @@ app.use(session({
     })
 }));
 
-// parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.set('view engine', 'ejs');
-// serve static files from template
 app.use(express.static(__dirname + '/public'));
 
-// include routes
-var routes = require('./routes/');
+let routes = require('./routes/');
+
+app.use(async (req, res, next) => {
+    User.findById(req.session.userId, (err, user) => {
+        req.user = user;
+        app.locals.user = user;
+        next();
+    });
+});
 
 app.use('/', routes);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('File Not Found');
-    err.status = 404;
-    next(err);
+app.use((req, res, next) => {
+  // /  next(404)
 });
 
-// error handler
-// define as the last app.use callback
-app.use(function (err, req, res, next) {
+app.use((err, req, res) => {
     res.status(err.status || 500);
     res.send(err.message);
 });
 
-
-// listen on port {port} <- config
 app.listen(config.port, function () {
     console.log('Express server started. Listing on port ' + config.port + '.');
 });

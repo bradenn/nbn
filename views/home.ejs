@@ -1,102 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" <% if(user != null){ %>data-theme="<%= user.theme %>"
-<% }else{ %> data-theme="dark"
-        <% } %>
->
+<html lang="en">
 <%- include("partials/header.ejs"); %>
 
 <body>
 <%- include("partials/nav.ejs"); %>
 
 <div class="container" style="margin-top:16px;">
-
+    <% let featured = posts[0] %>
     <div class="row">
-        <% trending.forEach(post => { %>
-            <div class="col-md-6">
-
-                <div class="d-flex" style="max-height: 11em; word-break: normal;">
-                    <div class="p-2 flex-fill" style="width: 50%;">
-                        <div class="bg-img" style="background-image: url(<%= post.picture %>); height: 100%;"></div>
+        <div class="col-md-12">
+            <div class="jumbotron p-4 p-md-5 rounded bg-dark fade-left"
+                 style="min-height:22rem; background-image: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5723476890756303) 41%, rgba(0,0,0,0) 100%), url(<%= featured.picture %>); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                    <div class="col-md-6 px-0 " style="color: #fff;">
+                        <h1 class="display-5"><%= featured.title %></h1>
+                        <p class="lead my-3"><%= featured.body.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 256) %></p>
+                        <p class="lead mb-0"><a href="/post/<%= featured._id %>" class="font-weight-bold" style="color: #fff;">Continue
+                                reading...</a></p>
                     </div>
-                    <div class="p-2 flex-fill" style="width: 100%;">
-                        <a href="/post/<%= post._id %>" class="no-bs">
-                            <h5 class="post-section"><%= post.section.toUpperCase() %></h5>
-                            <h4 class="post-title"><%= titles(post.title) %></h4>
-                            <span class="post-desc d-none d-sm-block"
-                                  style="max-height: 40px !important; overflow: hidden"><%= post.desc %></span>
-                            <div class="d-flex justify-content-between">
-                                <div class="p-2" style="padding:0 !important;">
-                                    <span class="post-source"><%= post.owner.firstname %> <%= post.owner.lastname %></span>
-                                    <span class="post-meta"> <%= new Date(post.date).toDateString() %></span>
-                                </div>
-
-                            </div>
-                        </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <% posts.slice(1).forEach(post => { %>
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary text-uppercase"><%= post.section %></strong>
+                        <h5 class="mb-0"><%= titles(post.title) %></h5>
+                        <div class="mb-1 text-muted"><%= timeSince(new Date(post.date)) %> ago</div>
+                        <p class="card-text mb-auto"><%= post.body.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 128) %></p>
+                        <a href="/post/<%= post._id %>" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                       <img src="<%= post.picture %>" width="200" style="height: 100%; object-fit: cover;">
                     </div>
                 </div>
-
             </div>
         <% }); %>
-
     </div>
-    <hr>
-    <div class="row">
-        <div class="col-md-7">
-            <div class="row">
-                <% posts.forEach(post => { %>
-                    <div class="col-md-12">
-                        <a href="/post/<%= post._id %>" class="no-bs">
-                        <div class="d-flex " style="max-height: 10em; word-break: normal; margin-bottom: 32px;">
-                            <div class="p-2 flex-grow-1" style="width: 100%;">
-                                <h5 class="post-section"><%= post.section.toUpperCase() %></h5>
-                                <h4 class="post-title"><%= titles(post.title) %></h4>
-                                <span class="post-desc d-none d-sm-block"><%= post.desc %></span>
-                                <div class="d-flex justify-content-between">
-                                    <div class="p-2" style="padding:0 !important;">
-                                        <span class="post-source"><%= post.owner.firstname %> <%= post.owner.lastname %></span>
-                                        <span class="post-meta"> <%= new Date(post.date).toDateString() %></span>
-                                    </div>
 
-                                </div>
-                            </div>
-                            <div class="p-2">
-                                <div style="background-image: url(<%= post.picture %>); width: 10em; height:100%; background-position: center; background-size: cover"></div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                <% }); %>
-            </div>
-        </div>
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-4">
+    <div class="col-md-4">
+        <div style="text-align: center">
+            <span class="text-muted">Copyright &copy; <%= new Date().getFullYear() %></span>
             <br>
-            <h4>Trending now</h4>
-            <hr>
-            <% let itr = 0; trending.forEach(post => { itr++; %>
-            <a href="/post/<%= post._id %>" class="no-bs">
-            <div class="d-flex " style="">
-                <div class="p-2 lg-num"><%= itr %></div>
-                <div class="p-2">
-                    <h4 class="post-title"><%= post.title %></h4>
-                    <span class="post-desc"><%= post.desc %></span>
-                </div>
+            <div class="footer-links">
 
-            </div>
-            </a>
-            <br>
-            <% }); %>
-            <hr>
-            <div style="text-align: center">
-                <span class="text-muted">Copyright &copy; 2019</span>
-                <br>
-                <div class="footer-links">
-
-                    <a href="mailto:legal@namebrandnews.com" class="text-muted">legal</a> &bull;
-                    <a href="/privacy" class="text-muted">privacy</a> &bull;
-                    <a href="/terms" class="text-muted">terms</a><br>
-                </div>
+                <a href="mailto:legal@namebrandnews.com" class="text-muted">legal</a> &bull;
+                <a href="/privacy" class="text-muted">privacy</a> &bull;
+                <a href="/terms" class="text-muted">terms</a><br>
             </div>
         </div>
     </div>
@@ -111,8 +62,8 @@
 
 <%
 function titles(title) {
-    let t = title.substring(0, 65);
-    if (t.length >= 64) t += "...";
+    let t = title.substring(0, 28);
+    if (t.length >= 27) t += "...";
     return t;
 }
 
