@@ -20,7 +20,7 @@ let PostSchema = new mongoose.Schema({
   desc: String,
   views: {
     type: Number,
-    default: "0"
+    default: 0
   },
   standing: {
     type: Number,

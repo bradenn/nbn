@@ -58,7 +58,6 @@ router.post('/video', (req, res) => {
 const upload = require('../services/aws-upload');
 const singleUpload = upload.single('image');
 
-
 router.post('/post', upload.single('image'), function (req, res, next) {
 
     let img = (typeof req.file == "undefined") ? req.body.link : req.file.location;
@@ -77,7 +76,7 @@ router.post('/post', upload.single('image'), function (req, res, next) {
         body: req.body.body,
         picture: img,
         desc: req.body.desc,
-        published: true,
+        published: false,
         section: req.body.section,
         caption: req.body.caption,
         standing: standing,

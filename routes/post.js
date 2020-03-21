@@ -1,27 +1,27 @@
-var router = require('express').Router();
+let router = require('express').Router();
 let User = require('../models/user');
 let Post = require('../models/post');
 let Comment = require('../models/comment');
 let Notifications = require('../models/notifications');
 
-router.get('/:id', function(req, res, next) {
-  User.findById(req.session.userId, function(err, user) {
-    Post.findById(req.params.id, function(err, post) {
-      post.views = post.views += 1;
-      Comment.find({
-        post: post._id
-      }, function(err, comments) {
-        post.save(function() {
-          return res.render("post", {
-            title: "Post",
-            user: user,
-            post: post,
-            comments: comments
+router.get('/:postId', function(req, res) {
+  User.findById(req.session.userId, function(er2r, user) {
+    Post.findById(req.params.postId, function(err, post) {
+        post.views = post.views += 1;
+        Comment.find({
+          post: post._id
+        }, function(err, comments) {
+          post.save(function() {
+            return res.render("post", {
+              title: "Post",
+              user: user,
+              post: post,
+              comments: comments
+            });
           });
+        }).sort({
+          _id: -1
         });
-      }).sort({
-        _id: -1
-      });
     });
   });
 });
