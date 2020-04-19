@@ -18,7 +18,7 @@
             <% } %>
             <div class="post">
                 <div class="post-element" style="">
-                    <h5 class="post-section"><%= post.section.toUpperCase() %></h5>
+                    <h5 class="post-section"><%= post.section.map(sec => sec.toUpperCase()).join(", ") %></h5>
                     <span class="post-title-lg"><%= post.title %></span>
                 </div>
                 <span class="post-desc d-none d-sm-block"

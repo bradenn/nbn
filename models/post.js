@@ -11,11 +11,10 @@ let PostSchema = new mongoose.Schema({
   },
   body: String,
   picture: String,
-  section: {
+  section: [{
     type: String,
     enum: ['us', 'world', 'politics', 'business', 'tech', 'health', 'entertainment', 'opinion', 'history'],
-    default: 'us'
-  },
+  }],
   tags: [String],
   desc: String,
   views: {

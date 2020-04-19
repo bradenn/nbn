@@ -26,7 +26,7 @@
             <div class="col-md-6">
                 <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
-                        <strong class="d-inline-block mb-2 text-primary text-uppercase"><%= post.section %></strong>
+                        <strong class="d-inline-block mb-2 text-primary text-uppercase"><%= post.section.map(sec => sec.toUpperCase()).join(", "); %></strong>
                         <h5 class="mb-0"><%= titles(post.title) %></h5>
                         <div class="mb-1 text-muted"><%= timeSince(new Date(post.date)) %> ago</div>
                         <p class="card-text mb-auto"><%= post.body.replace(/<\/?[^>]+(>|$)/g, "").substr(0, 128) %></p>
